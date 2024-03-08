@@ -12,5 +12,6 @@ add_executable(watersystem
         src/Graph.h
         src/Manager.h
         src/Reservoir.h
-        src/Stations.h
-        src/Sites.h)
+        src/City.h
+        src/Station.h
+        src/Site.h)
