@@ -6,8 +6,14 @@
 #define WATERSYSTEM_MANAGER_H
 
 
-class Manager {
+#include <string>
 
+class Manager {
+public:
+    void createReservoirs(const std::string &filename);
+    void createPipes(const std::string &filename);
+    void createCities(const std::string &filename);
+private:
 };
 
 

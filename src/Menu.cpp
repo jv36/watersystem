@@ -7,6 +7,7 @@
 
 
 int Menu::main() {
+    Manager manager;
     mainMenu();
     return 0;
 }
@@ -33,6 +34,5 @@ int Menu::mainMenu() {
     int n;
     std::cin >> n;
     std::cout << std::endl;
-
     return 0;
 }
