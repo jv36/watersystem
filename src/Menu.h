@@ -5,4 +5,9 @@
 #ifndef WATERSYSTEM_MENU_H
 #define WATERSYSTEM_MENU_H
 
+class Menu {
+public:
+    int main();
+    int mainMenu();
+};
 #endif //WATERSYSTEM_MENU_H
