@@ -8,4 +8,9 @@ include_directories(src)
 add_executable(watersystem
         src/Menu.cpp
         src/Menu.h
-        main.cpp)
+        main.cpp
+        src/Graph.h
+        src/Manager.h
+        src/Reservoir.h
+        src/Stations.h
+        src/Sites.h)
