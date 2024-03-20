@@ -17,6 +17,9 @@ public:
     void createStations(const std::string &filename, Graph& graph);
 
     void counter(Graph& graph);
+
+    void maxWaterFlow(Graph& graph, std::string city);
+
 private:
     Graph graph;
     std::vector<Vertex*> reservoirs;

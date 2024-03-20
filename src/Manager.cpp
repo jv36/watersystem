@@ -152,7 +152,17 @@ void Manager::counter(Graph& graph) {
     std::cout << "Number of stations: " << stations.size() << "\n";
     std::cout << "Number of cities: " << cities.size() << "\n";
     std::cout << "Number of pipes: " << number << "\n";
+}
 
+void Manager::maxWaterFlow(Graph &graph, std::string city) {
+    // Edmonds-Karp algorithm
+    // Possible approach: create a super-source and a super-sink
+    // connect the super-source to the reservoirs and the super-sink to the cities
+    // run the algorithm and check the flow from the super-source to the super-sink
+    // the flow from the super-source to the super-sink is the maximum flow
+    // then select a city (using code) and check the flow from the super-source to the city
 
 }
+
+
 
