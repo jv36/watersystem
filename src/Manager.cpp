@@ -6,9 +6,10 @@
 #include <fstream>
 #include <sstream>
 #include "Manager.h"
+#include "Graph.h"
 
-void Manager::createReservoirs(const std::string &filename) {
-    std::ifstream file("../csv/smalldataset/Reservoirs-Maa.csv");
+void Manager::createReservoirs(const std::string &filename, Graph& graph) {
+    std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error opening file" << std::endl;
         return;
@@ -25,11 +26,20 @@ void Manager::createReservoirs(const std::string &filename) {
         getline(iss, id, ',');
         getline(iss, code, ',');
         getline(iss, maxDelivery, ',');
+
+        int idConv = std::stoi(id);
+        double maxConv = std::stod(maxDelivery);
+
+        Vertex* vert = new Vertex(name, municipality, idConv, code, maxConv);
+        vert->setInfo(code);
+        graph.addVertex(vert);
     }
+
+
 }
 
-void Manager::createCities(const std::string &filename) {
-    std::ifstream file("../csv/smalldataset/Cities-Madeira.csv");
+void Manager::createCities(const std::string &filename, Graph& graph) {
+    std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error opening file" << std::endl;
         return;
@@ -39,18 +49,28 @@ void Manager::createCities(const std::string &filename) {
 
     while (getline(file, line)) {
         std::istringstream iss(line);
-        std::string name, id, code, demand, population;
+        std::string city, id, code, demand, population;
 
-        getline(iss, name, ',');
+        getline(iss, city, ',');
         getline(iss, id, ',');
         getline(iss, code, ',');
         getline(iss, demand, ',');
         getline(iss, population, ',');
+
+
+
+        int idConv = std::stoi(id);
+        double demandConv = std::stod(demand);
+        int popConv = std::stoi(population);
+
+        Vertex* vert = new Vertex(city, idConv, code, demandConv, popConv);
+        vert->setInfo(code);
+        graph.addVertex(vert);
     }
 }
 
-void Manager::createPipes(const std::string &filename) {
-    std::ifstream file("../csv/smalldataset/Pipes-Madeira.csv");
+void Manager::createStations(const std::string &filename, Graph& graph) {
+    std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Error opening file" << std::endl;
         return;
@@ -60,13 +80,79 @@ void Manager::createPipes(const std::string &filename) {
 
     while (getline(file, line)) {
         std::istringstream iss(line);
-        std::string name, id, code, demand, population;
+        std::string id, code;
 
-        getline(iss, name, ',');
         getline(iss, id, ',');
         getline(iss, code, ',');
-        getline(iss, demand, ',');
-        getline(iss, population, ',');
+
+        int idConv = std::stoi(id);
+
+        Vertex* vert = new Vertex(idConv, code);
+        vert->setInfo(code);
+        graph.addVertex(vert);
     }
+}
+
+void Manager::createPipes(const std::string &filename, Graph& graph) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Error opening file" << std::endl;
+        return;
+    }
+    std::string line;
+    getline(file, line);
+
+    while (getline(file, line)) {
+        std::istringstream iss(line);
+        std::string origin, destination, capacity, direction;
+
+        getline(iss, origin, ',');
+        getline(iss, destination, ',');
+        getline(iss, capacity, ',');
+        getline(iss, direction, ',');
+
+        int intDirection = std::stoi(direction);
+        double doubleCap = std::stod(capacity);
+
+        if (intDirection == 1) {
+            graph.addEdge(origin, destination, doubleCap);
+        }
+        if (intDirection == 0) {
+            graph.addBidirectionalEdge(origin, destination, doubleCap);
+        }
+    }
+}
+
+void Manager::counter(Graph& graph) {
+
+
+    std::cout << "Vertex set size: " << graph.getVertexSet().size() << "\n";
+
+
+    for (auto v : graph.getVertexSet()) {
+        if (v->getInfo().at(0) == 'R') {
+            reservoirs.push_back(v);
+        }
+
+        if (v->getInfo().at(0) == 'P') {
+            stations.push_back(v);
+        }
+
+        if (v->getInfo().at(0) == 'C') {
+            cities.push_back(v);
+        }
+    }
+
+    int number = 0;
+    for (auto v : graph.getVertexSet()) {
+        number += v->getAdj().size();
+    }
+
+    std::cout << "Number of reservoirs: " << reservoirs.size() << "\n";
+    std::cout << "Number of stations: " << stations.size() << "\n";
+    std::cout << "Number of cities: " << cities.size() << "\n";
+    std::cout << "Number of pipes: " << number << "\n";
+
+
 }
 

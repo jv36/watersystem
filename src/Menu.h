@@ -14,5 +14,6 @@ public:
 
 private:
     Manager manager;
+    Graph graph;
 };
 #endif //WATERSYSTEM_MENU_H

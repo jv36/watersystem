@@ -11,13 +11,6 @@ add_executable(watersystem
         main.cpp
         src/Graph.h
         src/Manager.h
-        src/Reservoir.h
-        src/City.h
-        src/Station.h
-        src/City.cpp
         src/Graph.cpp
         src/Manager.cpp
-        src/Reservoir.cpp
-        src/Station.cpp
-        src/EdgeVertex.h
-        src/EdgeVertex.cpp)
+)

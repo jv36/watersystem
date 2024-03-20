@@ -7,13 +7,22 @@
 
 
 #include <string>
+#include "Graph.h"
 
 class Manager {
 public:
-    void createReservoirs(const std::string &filename);
-    void createPipes(const std::string &filename);
-    void createCities(const std::string &filename);
+    void createReservoirs(const std::string &filename, Graph& graph);
+    void createPipes(const std::string &filename, Graph& graph);
+    void createCities(const std::string &filename, Graph& graph);
+    void createStations(const std::string &filename, Graph& graph);
+
+    void counter(Graph& graph);
 private:
+    Graph graph;
+    std::vector<Vertex*> reservoirs;
+    std::vector<Vertex*> cities;
+    std::vector<Vertex*> stations;
+    std::vector<Edge*> pipes;
 };
 
 
