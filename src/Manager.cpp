@@ -162,6 +162,8 @@ void Manager::maxWaterFlow(Graph &graph) {
 
     Vertex* superSource = new Vertex("supersource", "supersource", 999, "SS", INT_MAX);
     Vertex* superSink = new Vertex("supersink", "supersink", 999, "TS", INT_MAX);
+    superSource->setInfo("SS");
+    superSink->setInfo("TS");
 
     graph.addVertex(superSource);
     graph.addVertex(superSink);
@@ -180,10 +182,8 @@ void Manager::maxWaterFlow(Graph &graph) {
 
     edmondsKarp(graph, superSource, superSink);
 
-    // Depois disto é ir ao supersink
-    // Ver que edges vão lá parar e somar o fluxo de cada uma com o edge.getFlow()
-    // Para fazer por cidade a lógica é a mesma mas em vez de somar todos basta pesquisar pelo código da cidade em questão
 
+    // Para fazer por cidade é pesquisar por código e ver o getFlow()
     double maxFlow = 0;
     for (auto e : superSink->getIncoming()) {
         maxFlow += e->getFlow();

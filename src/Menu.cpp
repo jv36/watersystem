@@ -27,7 +27,7 @@ int Menu::mainMenu() {
     std::cout << "| 3 - Maximum amount of water that can reach a given city |\n";
     std::cout << "| 4 -                                                     |\n";
     std::cout << "| 5 - Exit                                                |\n";
-    std::cout << "| =============================                           |\n";
+    std::cout << "| ======================================================= |\n";
     std::cout << "| Please enter your choice:                               |\n";
     std::cout << "+---------------------------------------------------------+\n";
 
