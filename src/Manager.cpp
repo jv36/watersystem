@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <climits>
 #include "Manager.h"
 #include "Graph.h"
+
 
 void Manager::createReservoirs(const std::string &filename, Graph& graph) {
     std::ifstream file(filename);
@@ -150,7 +152,7 @@ void Manager::counter(Graph& graph) {
     std::cout << "Number of pipes: " << number << "\n";
 }
 
-void Manager::maxWaterFlow(Graph &graph, std::string city) {
+void Manager::maxWaterFlow(Graph &graph) {
     // Edmonds-Karp algorithm
     // Possible approach: create a super-source and a super-sink
     // connect the super-source to the reservoirs and the super-sink to the cities
@@ -158,7 +160,116 @@ void Manager::maxWaterFlow(Graph &graph, std::string city) {
     // the flow from the super-source to the super-sink is the maximum flow
     // then select a city (using code) and check the flow from the super-source to the city
 
+    Vertex* superSource = new Vertex("supersource", "supersource", 999, "SS", INT_MAX);
+    Vertex* superSink = new Vertex("supersink", "supersink", 999, "TS", INT_MAX);
+
+    graph.addVertex(superSource);
+    graph.addVertex(superSink);
+
+    for(auto v: graph.getVertexSet()){
+        if (!v->getInfo().empty()) {
+            if (v->getInfo().at(0) == 'R') {
+                graph.addEdge(superSource->getInfo(), v->getInfo(), v->getMaxDelivery());
+            }
+
+            if (v->getInfo().at(0) == 'C') {
+                graph.addEdge(v->getInfo(), superSink->getInfo(), v->getDemand());
+            }
+        }
+    }
+
+    edmondsKarp(graph, superSource, superSink);
+
+    // Depois disto é ir ao supersink
+    // Ver que edges vão lá parar e somar o fluxo de cada uma com o edge.getFlow()
+    // Para fazer por cidade a lógica é a mesma mas em vez de somar todos basta pesquisar pelo código da cidade em questão
+
+    double maxFlow = 0;
+    for (auto e : superSink->getIncoming()) {
+        maxFlow += e->getFlow();
+    }
+
+    std::cout << "The maximum amount of water that can reach all cities is " << maxFlow;
+
 }
 
 
+void Manager::edmondsKarp(Graph &graph, Vertex *source, Vertex *target) {
+    Vertex* s = graph.findVertex(source->getInfo());
+    Vertex* t = graph.findVertex(target->getInfo());
+
+    if (s == nullptr || t == nullptr || s == t) {
+        std::cout << "Invalid source or sink." << "\n";
+        return;
+    }
+
+    for (auto v : graph.getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            e->setFlow(0);
+        }
+    }
+
+    while (findAugmentingPaths(graph, s, t)) {
+        double f = findMinResidualAlongPath(s, t);
+        augmentFlowAlongPath(s, t, f);
+    }
+}
+bool Manager::findAugmentingPaths(Graph &graph,Vertex *s, Vertex *t){
+    for(auto v : graph.getVertexSet()) {
+        v->setVisited(false);
+    }
+    s->setVisited(true);
+    std::queue<Vertex*> q;
+    q.push(s);
+    while(!q.empty() && !t->isVisited()) {
+        auto v = q.front();
+        q.pop();
+        for(auto e: v->getAdj()) {
+            testAndVisit(q, e, e->getDest(), e->getWeight() - e->getFlow());
+        }
+        for(auto e: v->getIncoming()) {
+            testAndVisit(q, e, e->getOrig(), e->getFlow());
+        }
+    }
+    return t->isVisited();
+}
+
+double Manager::findMinResidualAlongPath(Vertex* s, Vertex* t) {
+    double f = INT_MAX;
+    for (auto v = t; v != s;) {
+        auto e = v->getPath();
+        if (e->getDest() == v) {
+            f = std::min(f, e->getWeight() - e->getFlow());
+            v = e->getOrig();
+        }
+        else {
+            f = std::min(f, e->getFlow());
+            v = e->getDest();
+        }
+    }
+    return f;
+}
+
+void Manager::testAndVisit(std::queue<Vertex*> &q, Edge* e, Vertex* w, double residual) {
+    if (!w->isVisited() && residual > 0) {
+        w->setVisited(true);
+        w->setPath(e);
+        q.push(w);
+    }
+}
+
+void Manager::augmentFlowAlongPath(Vertex* s, Vertex* t, double f) {
+    for (auto v = t; v != s;) {
+        auto e = v->getPath();
+        double flow = e->getFlow();
+        if (e->getDest() == v) {
+            e->setFlow(flow + f);
+            v = e->getOrig();
+        }
+        else {
+            e->setFlow(flow - f);
+            v = e->getDest();
+        }
+    }
+}
 

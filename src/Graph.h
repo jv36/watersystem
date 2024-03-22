@@ -38,6 +38,17 @@ public:
     Edge* addEdge(Vertex *dest, double w);
     bool removeEdge(std::string in);
     void removeOutgoingEdges();
+
+    double getMaxDelivery() const;
+    std::string getReservoir() const;
+    std::string getMunicipality() const;
+    int getID() const;
+    std::string getCode() const;
+    double getDemand() const;
+    int getPopulation() const;
+
+
+
 protected:
     std::string info;                // info node
     std::vector<Edge*> adj;  // outgoing edges
@@ -54,6 +65,14 @@ protected:
     int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
 
     void deleteEdge(Edge *edge);
+
+    double maxdelivery; // feito
+    std::string reservoir;
+    std::string municipality; 
+    int id;
+    std::string code;
+    double demand;
+    int population;
 };
 
 

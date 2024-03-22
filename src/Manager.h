@@ -14,7 +14,12 @@ public:
 
     void counter(Graph& graph);
 
-    void maxWaterFlow(Graph& graph, std::string city);
+    void maxWaterFlow(Graph& graph);
+    void edmondsKarp(Graph& graph, Vertex* source, Vertex* target);
+    bool findAugmentingPaths(Graph &graph,Vertex *s, Vertex *t);
+    double findMinResidualAlongPath(Vertex *s, Vertex *t);
+    void augmentFlowAlongPath(Vertex *s, Vertex *t, double f);
+    void testAndVisit(std::queue<Vertex*> &q, Edge *e, Vertex *w, double residual);
 
 private:
     Graph graph;

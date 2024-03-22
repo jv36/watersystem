@@ -135,6 +135,29 @@ Vertex::Vertex(std::string city, int id, std::string code, double demand, int po
 
 }
 
+double Vertex::getMaxDelivery() const {
+    return this->maxdelivery;
+}
+
+
+std::string Vertex::getReservoir() const{
+    return this->reservoir;
+}
+std::string Vertex::getMunicipality() const{
+    return  this->municipality;
+}
+int Vertex::getID() const{
+    return this->id;
+}
+std::string Vertex::getCode() const{
+    return this->code;
+}
+double Vertex::getDemand() const{
+    return  this->demand;
+}
+int Vertex::getPopulation() const{
+    return this->population;
+}
 
 /********************** Edge  ****************************/
 
