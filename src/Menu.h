@@ -11,5 +11,7 @@ public:
 private:
     Manager manager;
     Graph graph;
+
+    int maxFlowToCity();
 };
 #endif //WATERSYSTEM_MENU_H

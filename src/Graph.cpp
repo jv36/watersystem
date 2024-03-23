@@ -129,7 +129,7 @@ Vertex::Vertex(int id, std::string code) {
 }
 
 Vertex::Vertex(std::string city, int id, std::string code, double demand, int population) {
-    this->municipality = city;
+    this->city = city;
     this->id = id;
     this->code = code;
     this->demand = demand;
@@ -157,6 +157,10 @@ double Vertex::getDemand() const{
 }
 int Vertex::getPopulation() const{
     return this->population;
+}
+
+std::string Vertex::getCity() const {
+    return this->city;
 }
 
 /********************** Edge  ****************************/

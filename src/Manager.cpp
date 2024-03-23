@@ -186,12 +186,8 @@ void Manager::maxWaterFlow(Graph &graph) {
         }
     }
 
-    std::cout << "Edges connected to super-source: " << superSource->getAdj().size() << "\n";
-    std::cout << "Edges connected to super-sink: " << superSink->getIncoming().size()<< "\n";
-
     edmondsKarp(graph, superSource, superSink);
 
-    // Para fazer por cidade é pesquisar por código e ver o getFlow()
     double maxFlow = 0;
     for (auto e : superSink->getIncoming()) {
         maxFlow += e->getFlow();
@@ -200,6 +196,62 @@ void Manager::maxWaterFlow(Graph &graph) {
     std::cout << "The maximum amount of water that can reach all cities is " << maxFlow;
 
 }
+
+void Manager::maxWaterFlowCity(Graph &graph, const std::string &city) {
+    Vertex* superSource = new Vertex("supersource", "supersource", 999, "SS", INT_MAX);
+    Vertex* superSink = new Vertex("supersink", "supersink", 888, "TS", INT_MAX);
+
+    graph.addVertex(superSource);
+    graph.addVertex(superSink);
+
+    for(auto v: graph.getVertexSet()){
+        if (!v->getCode().empty()) {
+            if (v->getCode().at(0) == 'R') {
+                graph.addEdge(superSource->getCode(), v->getCode(), v->getMaxDelivery());
+            }
+
+            if (v->getCode().at(0) == 'C') {
+                graph.addEdge(v->getCode(), superSink->getCode(), v->getDemand());
+            }
+        }
+    }
+
+    edmondsKarp(graph, superSource, superSink);
+
+    for (auto e : superSink->getIncoming()) {
+        if (e->getOrig()->getCode() == city) {
+            std::cout << "The maximum amount of water that can reach " << e->getOrig()->getCity() << " is " << e->getFlow();
+            break;
+        }
+    }
+}
+
+void Manager::maxWaterFlowAllCities(Graph &graph) {
+    Vertex* superSource = new Vertex("supersource", "supersource", 999, "SS", INT_MAX);
+    Vertex* superSink = new Vertex("supersink", "supersink", 888, "TS", INT_MAX);
+
+    graph.addVertex(superSource);
+    graph.addVertex(superSink);
+
+    for(auto v: graph.getVertexSet()){
+        if (!v->getCode().empty()) {
+            if (v->getCode().at(0) == 'R') {
+                graph.addEdge(superSource->getCode(), v->getCode(), v->getMaxDelivery());
+            }
+
+            if (v->getCode().at(0) == 'C') {
+                graph.addEdge(v->getCode(), superSink->getCode(), v->getDemand());
+            }
+        }
+    }
+
+    edmondsKarp(graph, superSource, superSink);
+
+    for (auto e : superSink->getIncoming()) {
+        std::cout << e->getOrig()->getCity() << " with flow " << e->getFlow() << "\n";
+    }
+}
+
 
 
 void Manager::edmondsKarp(Graph &graph, Vertex *source, Vertex *target) {
@@ -288,4 +340,6 @@ void Manager::augmentFlowAlongPath(Vertex* s, Vertex* t, double f) {
         }
     }
 }
+
+
 

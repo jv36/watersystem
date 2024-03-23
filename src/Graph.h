@@ -44,6 +44,7 @@ public:
     std::string getCode() const;
     double getDemand() const;
     int getPopulation() const;
+    std::string getCity() const;
 
 protected:
     double maxDelivery;
@@ -53,6 +54,7 @@ protected:
     std::string code;
     double demand;
     int population;
+    std::string city;
     std::vector<Edge*> adj;  // outgoing edges
 
     // auxiliary fields
