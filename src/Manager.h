@@ -15,8 +15,12 @@ public:
     void counter(Graph& graph);
 
     void maxWaterFlow(Graph& graph);
+
+    void maxWaterFlowTotal(Graph &graph);
     void maxWaterFlowCity(Graph& graph, const std::string &city);
     void maxWaterFlowAllCities(Graph& graph);
+
+
     void edmondsKarp(Graph& graph, Vertex* source, Vertex* target);
     bool findAugmentingPaths(Graph &graph,Vertex *s, Vertex *t);
     double findMinResidualAlongPath(Vertex *s, Vertex *t);
@@ -29,6 +33,8 @@ private:
     std::vector<Vertex*> cities;
     std::vector<Vertex*> stations;
     std::vector<Edge*> pipes;
+
+
 };
 
 

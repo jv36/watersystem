@@ -187,38 +187,22 @@ void Manager::maxWaterFlow(Graph &graph) {
     }
 
     edmondsKarp(graph, superSource, superSink);
-
-    double maxFlow = 0;
-    for (auto e : superSink->getIncoming()) {
-        maxFlow += e->getFlow();
-    }
-
-    std::cout << "The maximum amount of water that can reach all cities is " << maxFlow;
-
 }
 
-void Manager::maxWaterFlowCity(Graph &graph, const std::string &city) {
-    Vertex* superSource = new Vertex("supersource", "supersource", 999, "SS", INT_MAX);
-    Vertex* superSink = new Vertex("supersink", "supersink", 888, "TS", INT_MAX);
 
-    graph.addVertex(superSource);
-    graph.addVertex(superSink);
-
-    for(auto v: graph.getVertexSet()){
-        if (!v->getCode().empty()) {
-            if (v->getCode().at(0) == 'R') {
-                graph.addEdge(superSource->getCode(), v->getCode(), v->getMaxDelivery());
-            }
-
-            if (v->getCode().at(0) == 'C') {
-                graph.addEdge(v->getCode(), superSink->getCode(), v->getDemand());
-            }
-        }
+void Manager::maxWaterFlowTotal(Graph& graph) {
+    maxWaterFlow(graph);
+    double maxFlow = 0;
+    Vertex* sink = graph.findVertex("TS");
+    for (auto e : sink->getIncoming()) {
+        maxFlow += e->getFlow();
     }
-
-    edmondsKarp(graph, superSource, superSink);
-
-    for (auto e : superSink->getIncoming()) {
+    std::cout << "The maximum amount of water that can reach all cities is " << maxFlow;
+}
+void Manager::maxWaterFlowCity(Graph &graph, const std::string &city) {
+    maxWaterFlow(graph);
+    Vertex* sink = graph.findVertex("TS");
+    for (auto e : sink->getIncoming()) {
         if (e->getOrig()->getCode() == city) {
             std::cout << "The maximum amount of water that can reach " << e->getOrig()->getCity() << " is " << e->getFlow();
             break;
@@ -227,27 +211,9 @@ void Manager::maxWaterFlowCity(Graph &graph, const std::string &city) {
 }
 
 void Manager::maxWaterFlowAllCities(Graph &graph) {
-    Vertex* superSource = new Vertex("supersource", "supersource", 999, "SS", INT_MAX);
-    Vertex* superSink = new Vertex("supersink", "supersink", 888, "TS", INT_MAX);
-
-    graph.addVertex(superSource);
-    graph.addVertex(superSink);
-
-    for(auto v: graph.getVertexSet()){
-        if (!v->getCode().empty()) {
-            if (v->getCode().at(0) == 'R') {
-                graph.addEdge(superSource->getCode(), v->getCode(), v->getMaxDelivery());
-            }
-
-            if (v->getCode().at(0) == 'C') {
-                graph.addEdge(v->getCode(), superSink->getCode(), v->getDemand());
-            }
-        }
-    }
-
-    edmondsKarp(graph, superSource, superSink);
-
-    for (auto e : superSink->getIncoming()) {
+    maxWaterFlow(graph);
+    Vertex* sink = graph.findVertex("TS");
+    for (auto e : sink->getIncoming()) {
         std::cout << e->getOrig()->getCity() << " with flow " << e->getFlow() << "\n";
     }
 }

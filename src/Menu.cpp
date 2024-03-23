@@ -49,7 +49,7 @@ int Menu::mainMenu() {
             manager.counter(graph);
             break;
         case 2:
-            manager.maxWaterFlow(graph);
+            manager.maxWaterFlowTotal(graph);
             break;
         case 3:
             maxFlowToCity();
