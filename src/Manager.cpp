@@ -146,6 +146,14 @@ void Manager::counter(Graph& graph) {
         number += v->getAdj().size();
     }
 
+    for (auto v : reservoirs) {
+        std::cout << "Reservoir: " << v->getMaxDelivery() << "\n";
+    }
+
+    for (auto v : cities) {
+        std::cout << "City: " << v->getDemand() << "\n";
+    }
+
     std::cout << "Number of reservoirs: " << reservoirs.size() << "\n";
     std::cout << "Number of stations: " << stations.size() << "\n";
     std::cout << "Number of cities: " << cities.size() << "\n";
@@ -180,8 +188,10 @@ void Manager::maxWaterFlow(Graph &graph) {
         }
     }
 
-    edmondsKarp(graph, superSource, superSink);
+    std::cout << "Edges connected to super-source: " << superSource->getAdj().size() << "\n";
+    std::cout << "Edges connected to super-sink: " << superSink->getIncoming().size()<< "\n";
 
+    edmondsKarp(graph, superSource, superSink);
 
     // Para fazer por cidade é pesquisar por código e ver o getFlow()
     double maxFlow = 0;
@@ -209,28 +219,31 @@ void Manager::edmondsKarp(Graph &graph, Vertex *source, Vertex *target) {
         }
     }
 
+
     while (findAugmentingPaths(graph, s, t)) {
         double f = findMinResidualAlongPath(s, t);
         augmentFlowAlongPath(s, t, f);
     }
 }
-bool Manager::findAugmentingPaths(Graph &graph,Vertex *s, Vertex *t){
+bool Manager::findAugmentingPaths(Graph &graph, Vertex *s, Vertex *t){
     for(auto v : graph.getVertexSet()) {
         v->setVisited(false);
     }
     s->setVisited(true);
     std::queue<Vertex*> q;
     q.push(s);
+
     while(!q.empty() && !t->isVisited()) {
         auto v = q.front();
         q.pop();
         for(auto e: v->getAdj()) {
-            testAndVisit(q, e, e->getDest(), e->getWeight() - e->getFlow());
+            testAndVisit(q, e, e->getDest(), e->getCapacity() - e->getFlow());
         }
         for(auto e: v->getIncoming()) {
             testAndVisit(q, e, e->getOrig(), e->getFlow());
         }
     }
+
     return t->isVisited();
 }
 
@@ -239,10 +252,12 @@ double Manager::findMinResidualAlongPath(Vertex* s, Vertex* t) {
     for (auto v = t; v != s;) {
         auto e = v->getPath();
         if (e->getDest() == v) {
-            f = std::min(f, e->getWeight() - e->getFlow());
+            std::cout << "And flow here " << e->getFlow() << "\n";
+            f = std::min(f, e->getCapacity() - e->getFlow());
             v = e->getOrig();
         }
         else {
+            std::cout << "Here too " << e->getFlow() << "\n";
             f = std::min(f, e->getFlow());
             v = e->getDest();
         }
@@ -262,6 +277,7 @@ void Manager::augmentFlowAlongPath(Vertex* s, Vertex* t, double f) {
     for (auto v = t; v != s;) {
         auto e = v->getPath();
         double flow = e->getFlow();
+        std::cout << "Here 2 too " << e->getFlow() << "\n";
         if (e->getDest() == v) {
             e->setFlow(flow + f);
             v = e->getOrig();

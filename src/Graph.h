@@ -47,9 +47,15 @@ public:
     double getDemand() const;
     int getPopulation() const;
 
-
-
 protected:
+    double maxDelivery;
+    std::string reservoir;
+    std::string municipality;
+    int id;
+    std::string code;
+    double demand;
+    int population;
+
     std::string info;                // info node
     std::vector<Edge*> adj;  // outgoing edges
 
@@ -65,14 +71,6 @@ protected:
     int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
 
     void deleteEdge(Edge *edge);
-
-    double maxdelivery; // feito
-    std::string reservoir;
-    std::string municipality; 
-    int id;
-    std::string code;
-    double demand;
-    int population;
 };
 
 
@@ -81,7 +79,7 @@ public:
     Edge(Vertex *orig, Vertex *dest, double capacity);
 
     Vertex* getDest() const;
-    double getWeight() const;
+    double getCapacity() const;
     bool isSelected() const;
     Vertex* getOrig() const;
     Edge* getReverse() const;
@@ -92,7 +90,7 @@ public:
     void setFlow(double flow);
 protected:
     Vertex* dest; // destination vertex
-    double weight; // edge weight, can also be used for capacity
+    double capacity; // edge weight, can also be used for capacity
 
     // auxiliary fields
     bool selected = false;

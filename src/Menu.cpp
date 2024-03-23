@@ -4,7 +4,7 @@
 
 int Menu::main() {
     Manager manager;
-    manager.createReservoirs("../largedataset/Reservoirs.csv", graph);
+    manager.createReservoirs("../largedataset/Reservoir.csv", graph);
     manager.createCities("../largedataset/Cities.csv", graph);
     manager.createStations("../largedataset/Stations.csv", graph);
     manager.createPipes("../largedataset/Pipes.csv", graph);

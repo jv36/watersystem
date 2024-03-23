@@ -124,21 +124,29 @@ Edge *Vertex::addEdge(Vertex *dest, double w) {
 }
 
 Vertex::Vertex(std::string reservoir, std::string municipality, int id, std::string code, double maxdelivery) {
-
+    this->reservoir = reservoir;
+    this->municipality = municipality;
+    this->id = id;
+    this->code = code;
+    this->maxDelivery = maxdelivery;
 }
 
 Vertex::Vertex(int id, std::string code) {
-
+    this->id = id;
+    this->code = code;
 }
 
 Vertex::Vertex(std::string city, int id, std::string code, double demand, int population) {
-
+    this->municipality = city;
+    this->id = id;
+    this->code = code;
+    this->demand = demand;
+    this->population = population;
 }
 
 double Vertex::getMaxDelivery() const {
-    return this->maxdelivery;
+    return this->maxDelivery;
 }
-
 
 std::string Vertex::getReservoir() const{
     return this->reservoir;
@@ -161,14 +169,19 @@ int Vertex::getPopulation() const{
 
 /********************** Edge  ****************************/
 
-Edge::Edge(Vertex *orig, Vertex *dest, double w): orig(orig), dest(dest), weight(w) {}
+Edge::Edge(Vertex *orig, Vertex *dest, double capacity) {
+    this->orig = orig;
+    this->dest = dest;
+    this->capacity = capacity;
+
+}
 
 Vertex * Edge::getDest() const {
     return this->dest;
 }
 
-double Edge::getWeight() const {
-    return this->weight;
+double Edge::getCapacity() const {
+    return this->capacity;
 }
 
 Vertex * Edge::getOrig() const {
@@ -198,6 +211,8 @@ void Edge::setReverse(Edge *reverse) {
 void Edge::setFlow(double flow) {
     this->flow = flow;
 }
+
+
 
 /********************** Graph  ****************************/
 
