@@ -322,5 +322,37 @@ void Manager::flowDeficit(Graph &graph) {
     }
 }
 
+void Manager::affectingReservoirs(Graph &graph, std::string code) {
+    Vertex* reservoir = graph.findVertex(code);
+    if (reservoir == nullptr) {
+        std::cout << "Reservoir not found!\n";
+        return;
+    }
+
+    for (auto e : reservoir->getAdj()) {
+        graph.removeEdge(e->getOrig()->getCode(), e->getDest()->getCode());
+    }
+
+    for (auto e : reservoir->getIncoming()) {
+        graph.removeEdge(e->getOrig()->getCode(), e->getDest()->getCode());
+    }
+
+    graph.removeVertex(reservoir->getCode());
+
+    maxWaterFlow(graph);
+
+    for (auto v : graph.getVertexSet()) {
+        if (v->getCode().at(0) == 'C') {
+            double totalFlow = 0;
+            for (auto e : v->getIncoming()) {
+                totalFlow += e->getFlow();
+            }
+            if (totalFlow < v->getDemand()) {
+                std::cout << v->getCity() << " (" << v->getCode() << ")" << " has a flow deficit of " << v->getDemand() - totalFlow << "\n";
+            }
+        }
+    }
+}
+
 
 

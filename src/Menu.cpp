@@ -36,7 +36,8 @@ int Menu::mainMenu() {
     std::cout << "| 3 - Maximum amount of water that can reach a given city |\n";
     std::cout << "| 4 - List max flow for all cities                        |\n";
     std::cout << "| 5 - Cities with water flow deficit                      |\n";
-    std::cout << "| 6 - Exit                                                |\n";
+    std::cout << "| 6 - Affecting reservoirs                                |\n";
+    std::cout << "| 7 - Exit                                                |\n";
     std::cout << "| ======================================================= |\n";
     std::cout << "| Please enter your choice:                               |\n";
     std::cout << "+---------------------------------------------------------+\n";
@@ -62,12 +63,42 @@ int Menu::mainMenu() {
             manager.flowDeficit(graph);
             break;
         case 6:
+            affectingReservoirs();
+            break;
+        case 7:
             exit(0);
     }
 
     return 0;
 }
 
+
+int Menu::affectingReservoirs() {
+    std::cout << "Do you wish to see a full list of reservoirs & respective codes? (y/n)\n";
+    char c;
+    std::cin >> c;
+    if (c == 'y') {
+        for (auto v : graph.getVertexSet()) {
+            if (v->getCode().at(0) == 'R') {
+                std::cout << v->getCode() << "\n";
+            }
+        }
+    }
+
+    Vertex* reservoir;
+    std::string name, code;
+    std::cout << "Please enter the code of the reservoir you wish to see the cities affected by:\n";
+    std::cin >> code;
+    reservoir = graph.findVertex(code);
+    if (reservoir == nullptr) {
+        std::cout << "Reservoir not found!\n";
+        return 0;
+    }
+    std::cout << "Upon the removal of reservoir with code " << code << ", the following cities will be affected:\n";
+    manager.affectingReservoirs(graph, code);
+
+    return 0;
+}
 int Menu::maxFlowToCity() {
     std::cout << "Do you wish to see a full list of cities & respective codes? (y/n)\n";
     char c;

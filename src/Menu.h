@@ -13,5 +13,7 @@ private:
     Graph graph;
 
     int maxFlowToCity();
+
+    int affectingReservoirs();
 };
 #endif //WATERSYSTEM_MENU_H

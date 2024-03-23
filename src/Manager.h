@@ -22,6 +22,8 @@ public:
 
     void flowDeficit(Graph& graph);
 
+    void affectingReservoirs(Graph &graph, std::string code);
+
     void edmondsKarp(Graph& graph, Vertex* source, Vertex* target);
     bool findAugmentingPaths(Graph &graph,Vertex *s, Vertex *t);
     double findMinResidualAlongPath(Vertex *s, Vertex *t);
