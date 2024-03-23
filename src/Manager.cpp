@@ -307,5 +307,20 @@ void Manager::augmentFlowAlongPath(Vertex* s, Vertex* t, double f) {
     }
 }
 
+void Manager::flowDeficit(Graph &graph) {
+    maxWaterFlow(graph);
+    for (auto v : graph.getVertexSet()) {
+        if (v->getCode().at(0) == 'C') {
+            double totalFlow = 0;
+            for (auto e : v->getIncoming()) {
+                totalFlow += e->getFlow();
+            }
+            if (totalFlow < v->getDemand()) {
+                std::cout << v->getCity() << " (" << v->getCode() << ")" << " has a flow deficit of " << v->getDemand() - totalFlow << "\n";
+            }
+        }
+    }
+}
+
 
 

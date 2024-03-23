@@ -20,6 +20,7 @@ public:
     void maxWaterFlowCity(Graph& graph, const std::string &city);
     void maxWaterFlowAllCities(Graph& graph);
 
+    void flowDeficit(Graph& graph);
 
     void edmondsKarp(Graph& graph, Vertex* source, Vertex* target);
     bool findAugmentingPaths(Graph &graph,Vertex *s, Vertex *t);

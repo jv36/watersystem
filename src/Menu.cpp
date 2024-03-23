@@ -35,7 +35,8 @@ int Menu::mainMenu() {
     std::cout << "| 2 - Maximum network flow                                |\n";
     std::cout << "| 3 - Maximum amount of water that can reach a given city |\n";
     std::cout << "| 4 - List max flow for all cities                        |\n";
-    std::cout << "| 5 - Exit                                                |\n";
+    std::cout << "| 5 - Cities with water flow deficit                      |\n";
+    std::cout << "| 6 - Exit                                                |\n";
     std::cout << "| ======================================================= |\n";
     std::cout << "| Please enter your choice:                               |\n";
     std::cout << "+---------------------------------------------------------+\n";
@@ -58,6 +59,9 @@ int Menu::mainMenu() {
             manager.maxWaterFlowAllCities(graph);
             break;
         case 5:
+            manager.flowDeficit(graph);
+            break;
+        case 6:
             exit(0);
     }
 
