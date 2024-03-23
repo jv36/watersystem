@@ -8,6 +8,15 @@ int Menu::main() {
     manager.createCities("../largedataset/Cities.csv", graph);
     manager.createStations("../largedataset/Stations.csv", graph);
     manager.createPipes("../largedataset/Pipes.csv", graph);
+
+    /*
+    manager.createReservoirs("../smalldataset/Reservoirs_Madeira.csv", graph);
+    manager.createCities("../smalldataset/Cities_Madeira.csv", graph);
+    manager.createStations("../smalldataset/Stations_Madeira.csv", graph);
+    manager.createPipes("../smalldataset/Pipes_Madeira.csv", graph);
+     */
+
+
     mainMenu();
     return 0;
 }

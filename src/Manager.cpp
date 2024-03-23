@@ -31,8 +31,6 @@ void Manager::createReservoirs(const std::string &filename, Graph& graph) {
         Vertex* vert = new Vertex(name, municipality, idConv, code, maxConv);
         graph.addVertex(vert);
     }
-
-
 }
 
 void Manager::createCities(const std::string &filename, Graph& graph) {
@@ -119,8 +117,6 @@ void Manager::createPipes(const std::string &filename, Graph& graph) {
 }
 
 void Manager::counter(Graph& graph) {
-
-
     std::cout << "Vertex set size: " << graph.getVertexSet().size() << "\n";
 
 
@@ -139,18 +135,25 @@ void Manager::counter(Graph& graph) {
     }
 
     int number = 0;
+
     for (auto v : graph.getVertexSet()) {
-        number += v->getAdj().size();
+        for (auto e : v->getAdj()) {
+            e->setSelected(false);
+        }
     }
 
-    for (auto v : reservoirs) {
-        std::cout << "Reservoir: " << v->getMaxDelivery() << "\n";
+    for (auto v : graph.getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            if (!e->isSelected()) {
+                number++;
+                e->setSelected(true);
+            }
+        }
     }
 
-    for (auto v : cities) {
-        std::cout << "City: " << v->getDemand() << "\n";
+    for (auto v : graph.getVertexSet()) {
+        std::cout << v->getCode() << "\n";
     }
-
     std::cout << "Number of reservoirs: " << reservoirs.size() << "\n";
     std::cout << "Number of stations: " << stations.size() << "\n";
     std::cout << "Number of cities: " << cities.size() << "\n";
@@ -166,7 +169,7 @@ void Manager::maxWaterFlow(Graph &graph) {
     // then select a city (using code) and check the flow from the super-source to the city
 
     Vertex* superSource = new Vertex("supersource", "supersource", 999, "SS", INT_MAX);
-    Vertex* superSink = new Vertex("supersink", "supersink", 999, "TS", INT_MAX);
+    Vertex* superSink = new Vertex("supersink", "supersink", 888, "TS", INT_MAX);
 
     graph.addVertex(superSource);
     graph.addVertex(superSink);
@@ -224,6 +227,7 @@ bool Manager::findAugmentingPaths(Graph &graph, Vertex *s, Vertex *t){
     for(auto v : graph.getVertexSet()) {
         v->setVisited(false);
     }
+
     s->setVisited(true);
     std::queue<Vertex*> q;
     q.push(s);
@@ -247,12 +251,10 @@ double Manager::findMinResidualAlongPath(Vertex* s, Vertex* t) {
     for (auto v = t; v != s;) {
         auto e = v->getPath();
         if (e->getDest() == v) {
-            std::cout << "And flow here " << e->getFlow() << "\n";
             f = std::min(f, e->getCapacity() - e->getFlow());
             v = e->getOrig();
         }
         else {
-            std::cout << "Here too " << e->getFlow() << "\n";
             f = std::min(f, e->getFlow());
             v = e->getDest();
         }
@@ -276,7 +278,6 @@ void Manager::augmentFlowAlongPath(Vertex* s, Vertex* t, double f) {
     for (auto v = t; v != s;) {
         auto e = v->getPath();
         double flow = e->getFlow();
-        std::cout << "Here 2 too " << e->getFlow() << "\n";
         if (e->getDest() == v) {
             e->setFlow(flow + f);
             v = e->getOrig();
