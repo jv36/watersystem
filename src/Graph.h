@@ -20,7 +20,6 @@ public:
 
     bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 
-    std::string getInfo() const;
     std::vector<Edge*> getAdj() const;
     bool isVisited() const;
     bool isProcessing() const;
@@ -29,7 +28,6 @@ public:
     Edge* getPath() const;
     std::vector<Edge*> getIncoming() const;
 
-    void setInfo(std::string info);
     void setVisited(bool visited);
     void setProcesssing(bool processing);
     void setIndegree(unsigned int indegree);
@@ -55,8 +53,6 @@ protected:
     std::string code;
     double demand;
     int population;
-
-    std::string info;                // info node
     std::vector<Edge*> adj;  // outgoing edges
 
     // auxiliary fields

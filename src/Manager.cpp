@@ -29,7 +29,6 @@ void Manager::createReservoirs(const std::string &filename, Graph& graph) {
         double maxConv = std::stod(maxDelivery);
 
         Vertex* vert = new Vertex(name, municipality, idConv, code, maxConv);
-        vert->setInfo(code);
         graph.addVertex(vert);
     }
 
@@ -62,7 +61,6 @@ void Manager::createCities(const std::string &filename, Graph& graph) {
         int popConv = std::stoi(population);
 
         Vertex* vert = new Vertex(city, idConv, code, demandConv, popConv);
-        vert->setInfo(code);
         graph.addVertex(vert);
     }
 }
@@ -86,7 +84,6 @@ void Manager::createStations(const std::string &filename, Graph& graph) {
         int idConv = std::stoi(id);
 
         Vertex* vert = new Vertex(idConv, code);
-        vert->setInfo(code);
         graph.addVertex(vert);
     }
 }
@@ -128,15 +125,15 @@ void Manager::counter(Graph& graph) {
 
 
     for (auto v : graph.getVertexSet()) {
-        if (v->getInfo().at(0) == 'R') {
+        if (v->getCode().at(0) == 'R') {
             reservoirs.push_back(v);
         }
 
-        if (v->getInfo().at(0) == 'P') {
+        if (v->getCode().at(0) == 'P') {
             stations.push_back(v);
         }
 
-        if (v->getInfo().at(0) == 'C') {
+        if (v->getCode().at(0) == 'C') {
             cities.push_back(v);
         }
     }
@@ -170,20 +167,18 @@ void Manager::maxWaterFlow(Graph &graph) {
 
     Vertex* superSource = new Vertex("supersource", "supersource", 999, "SS", INT_MAX);
     Vertex* superSink = new Vertex("supersink", "supersink", 999, "TS", INT_MAX);
-    superSource->setInfo("SS");
-    superSink->setInfo("TS");
 
     graph.addVertex(superSource);
     graph.addVertex(superSink);
 
     for(auto v: graph.getVertexSet()){
-        if (!v->getInfo().empty()) {
-            if (v->getInfo().at(0) == 'R') {
-                graph.addEdge(superSource->getInfo(), v->getInfo(), v->getMaxDelivery());
+        if (!v->getCode().empty()) {
+            if (v->getCode().at(0) == 'R') {
+                graph.addEdge(superSource->getCode(), v->getCode(), v->getMaxDelivery());
             }
 
-            if (v->getInfo().at(0) == 'C') {
-                graph.addEdge(v->getInfo(), superSink->getInfo(), v->getDemand());
+            if (v->getCode().at(0) == 'C') {
+                graph.addEdge(v->getCode(), superSink->getCode(), v->getDemand());
             }
         }
     }
@@ -205,8 +200,8 @@ void Manager::maxWaterFlow(Graph &graph) {
 
 
 void Manager::edmondsKarp(Graph &graph, Vertex *source, Vertex *target) {
-    Vertex* s = graph.findVertex(source->getInfo());
-    Vertex* t = graph.findVertex(target->getInfo());
+    Vertex* s = graph.findVertex(source->getCode());
+    Vertex* t = graph.findVertex(target->getCode());
 
     if (s == nullptr || t == nullptr || s == t) {
         std::cout << "Invalid source or sink." << "\n";
@@ -260,6 +255,10 @@ double Manager::findMinResidualAlongPath(Vertex* s, Vertex* t) {
             std::cout << "Here too " << e->getFlow() << "\n";
             f = std::min(f, e->getFlow());
             v = e->getDest();
+        }
+
+        if (v == s) {
+            break;
         }
     }
     return f;

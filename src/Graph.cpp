@@ -11,7 +11,7 @@ bool Vertex::removeEdge(std::string in) {
     while (it != adj.end()) {
         Edge *edge = *it;
         Vertex *dest = edge->getDest();
-        if (dest->getInfo() == in) {
+        if (dest->getCode() == in) {
             it = adj.erase(it);
             deleteEdge(edge);
             removedEdge = true; // allows for multiple edges to connect the same pair of vertices (multigraph)
@@ -37,10 +37,6 @@ void Vertex::removeOutgoingEdges() {
 
 bool Vertex::operator<(Vertex & vertex) const {
     return this->dist < vertex.dist;
-}
-
-std::string Vertex::getInfo() const {
-    return this->info;
 }
 
 
@@ -70,10 +66,6 @@ Edge *Vertex::getPath() const {
 
 std::vector<Edge *> Vertex::getIncoming() const {
     return this->incoming;
-}
-
-void Vertex::setInfo(std::string in) {
-    this->info = in;
 }
 
 void Vertex::setVisited(bool visited) {
@@ -106,7 +98,7 @@ void Vertex::deleteEdge(Edge *edge) {
     // Remove the corresponding edge from the incoming list
     auto it = dest->incoming.begin();
     while (it != dest->incoming.end()) {
-        if ((*it)->getOrig()->getInfo() == info) {
+        if ((*it)->getOrig()->getCode() == code) {
             it = dest->incoming.erase(it);
         }
         else {
@@ -229,7 +221,7 @@ std::vector<Vertex*> Graph::getVertexSet() const {
  */
 Vertex* Graph::findVertex(const std::string &in) const {
     for (auto v : vertexSet)
-        if (v->getInfo() == in)
+        if (v->getCode() == in)
             return v;
     return nullptr;
 }
@@ -239,7 +231,7 @@ Vertex* Graph::findVertex(const std::string &in) const {
  */
 int Graph::findVertexIdx(const std::string &in) const {
     for (unsigned i = 0; i < vertexSet.size(); i++)
-        if (vertexSet[i]->getInfo() == in)
+        if (vertexSet[i]->getCode() == in)
             return i;
     return -1;
 }
@@ -249,7 +241,7 @@ int Graph::findVertexIdx(const std::string &in) const {
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
 bool Graph::addVertex(Vertex* v) {
-    if (findVertex(v->getInfo()) != nullptr) {
+    if (findVertex(v->getCode()) != nullptr) {
         return false;
     }
     vertexSet.push_back(v);
@@ -263,11 +255,11 @@ bool Graph::addVertex(Vertex* v) {
  */
 bool Graph::removeVertex(const std::string &in) {
     for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
-        if ((*it)->getInfo() == in) {
+        if ((*it)->getCode() == in) {
             auto v = *it;
             v->removeOutgoingEdges();
             for (auto u : vertexSet) {
-                u->removeEdge(v->getInfo());
+                u->removeEdge(v->getCode());
             }
             vertexSet.erase(it);
             delete v;
