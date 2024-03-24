@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <climits>
+#include <set>
+#include <unordered_map>
 #include "Manager.h"
 #include "Graph.h"
 
@@ -354,5 +356,134 @@ void Manager::affectingReservoirs(Graph &graph, std::string code) {
     }
 }
 
+void Manager::affectingStations(Graph graph, std::string code) {
+    Vertex* station = graph.findVertex(code);
+    if (station == nullptr) {
+        std::cout << "Station not found!\n";
+        return;
+    }
+
+        for (auto e : station->getAdj()) {
+            graph.removeEdge(e->getOrig()->getCode(), e->getDest()->getCode());
+        }
+
+        for (auto e : station->getIncoming()) {
+            graph.removeEdge(e->getOrig()->getCode(), e->getDest()->getCode());
+        }
+
+        graph.removeVertex(station->getCode());
+
+        maxWaterFlow(graph);
+
+        for (auto v : graph.getVertexSet()) {
+            if (v->getCode().at(0) == 'C') {
+                double totalFlow = 0;
+                for (auto e : v->getIncoming()) {
+                    totalFlow += e->getFlow();
+                }
+                if (totalFlow < v->getDemand()) {
+                    std::cout << v->getCity() << " (" << v->getCode() << ")" << " has a flow deficit of " << v->getDemand() - totalFlow << "\n";
+                }
+            }
+        }
+}
+
+void Manager::unaffectingStations(Graph graph) {
+    std::vector<std::pair<std::string, double>> stationFlows;
+    std::vector<std::pair<std::string, double>> stationFlows2;
+    std::vector<std::string> stations;
+    maxWaterFlow(graph);
+
+    for (auto v : graph.getVertexSet()) {
+        if (v->getCode().at(0) == 'C') {
+            double totalFlow = 0;
+            for (auto e : v->getIncoming()) {
+                totalFlow += e->getFlow();
+            }
+            if (totalFlow < v->getDemand()) {
+                stationFlows.push_back(std::make_pair(v->getCode(), v->getDemand() - totalFlow));
+            }
+        }
+    }
+
+    for (auto v : graph.getVertexSet()) {
+        if (v->getCode().at(0) == 'P') {
+            Graph newGraph = graphCopy(graph);
+            for (auto e : v->getAdj()) {
+                newGraph.removeEdge(e->getOrig()->getCode(), e->getDest()->getCode());
+            }
+
+
+            for (auto e : v->getIncoming()) {
+                newGraph.removeEdge(e->getOrig()->getCode(), e->getDest()->getCode());
+            }
+
+            newGraph.removeVertex(v->getCode());
+            maxWaterFlow(newGraph);
+            for (auto v : newGraph.getVertexSet()) {
+                if (v->getCode().at(0) == 'C') {
+                    double totalFlow = 0;
+                    for (auto e : v->getIncoming()) {
+                        totalFlow += e->getFlow();
+                    }
+                    if (totalFlow < v->getDemand()) {
+                        stationFlows2.push_back(std::make_pair(v->getCode(), v->getDemand() - totalFlow));
+                    }
+                }
+            }
+            if (vectorCompare(stationFlows, stationFlows2)) {
+                stations.push_back(v->getCode());
+            }
+            stationFlows2.clear();
+        }
+    }
+
+    for (auto s : stations) {
+        std::cout << s << "\n";
+    }
+}
+
+bool Manager::vectorCompare(const std::vector<std::pair<std::string, double>> &v1, const std::vector<std::pair<std::string, double>> &v2) {
+    if (v1.size() != v2.size()) {
+        return false;
+    }
+
+    for (unsigned i = 0; i < v1.size(); i++) {
+        if (v1[i].first != v2[i].first || v1[i].second != v2[i].second) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+/*
+ * Copia o grafo existente de modo a podermos fazer várias iterações
+ * de algoritmos sem alterar o grafo original.
+ */
+Graph Manager::graphCopy(const Graph& graph) {
+    Graph newGraph;
+    std::unordered_map<Vertex*, Vertex*> vertexMap; // Map to store mapping between original and copied vertices
+
+    // Copy vertices
+    for (auto v : graph.getVertexSet()) {
+        Vertex* newVertex = new Vertex(*v); // Create a new vertex with the same attributes as the original
+        newGraph.addVertex(newVertex);
+        vertexMap[v] = newVertex; // Store mapping between original and copied vertices
+    }
+
+    // Copy edges
+    for (auto v : graph.getVertexSet()) {
+        for (auto e : v->getAdj()) {
+            auto origVertex = vertexMap[e->getOrig()]; // Get the copied origin vertex
+            auto destVertex = vertexMap[e->getDest()]; // Get the copied destination vertex
+            double capacity = e->getCapacity();
+            newGraph.addEdge(origVertex->getCode(), destVertex->getCode(), capacity);
+        }
+    }
+
+    return newGraph;
+}
 
 

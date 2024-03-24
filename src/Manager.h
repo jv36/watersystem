@@ -30,6 +30,10 @@ public:
     void augmentFlowAlongPath(Vertex *s, Vertex *t, double f);
     void testAndVisit(std::queue<Vertex*> &q, Edge *e, Vertex *w, double residual);
 
+    void affectingStations(Graph graph, std::string code);
+
+    void unaffectingStations(Graph graph);
+
 private:
     Graph graph;
     std::vector<Vertex*> reservoirs;
@@ -38,6 +42,10 @@ private:
     std::vector<Edge*> pipes;
 
 
+    Graph graphCopy(const Graph &graph);
+
+    bool vectorCompare(const std::vector<std::pair<std::string, double>> &v1,
+                       const std::vector<std::pair<std::string, double>> &v2);
 };
 
 

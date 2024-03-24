@@ -7,13 +7,11 @@ class Menu {
 public:
     int main();
     int mainMenu();
-
+    int maxFlowToCity();
+    int affectingReservoirs();
+    int affectingStations();
 private:
     Manager manager;
     Graph graph;
-
-    int maxFlowToCity();
-
-    int affectingReservoirs();
 };
 #endif //WATERSYSTEM_MENU_H

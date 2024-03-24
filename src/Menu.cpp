@@ -37,7 +37,9 @@ int Menu::mainMenu() {
     std::cout << "| 4 - List max flow for all cities                        |\n";
     std::cout << "| 5 - Cities with water flow deficit                      |\n";
     std::cout << "| 6 - Affecting reservoirs                                |\n";
-    std::cout << "| 7 - Exit                                                |\n";
+    std::cout << "| 7 - Affecting pumping stations                          |\n";
+    std::cout << "| 8 - Affecting pipelines                                 |\n";
+    std::cout << "| 9 - Exit                                                |\n";
     std::cout << "| ======================================================= |\n";
     std::cout << "| Please enter your choice:                               |\n";
     std::cout << "+---------------------------------------------------------+\n";
@@ -66,6 +68,8 @@ int Menu::mainMenu() {
             affectingReservoirs();
             break;
         case 7:
+            affectingStations();
+        case 9:
             exit(0);
     }
 
@@ -153,4 +157,48 @@ int Menu::maxFlowToCity() {
     }
 
     return 0;
+}
+
+int Menu::affectingStations() {
+    std::cout << "+-------------------------------+\n";
+    std::cout << "| Select type of input:         |\n";
+    std::cout << "| 1 - Specific station          |\n";
+    std::cout << "| 2 - Unaffecting stations      |\n";
+    std::cout << "| 3 - Return to main menu       |\n";
+    std::cout << "+-------------------------------+\n";
+    int inputType;
+    std::cin >> inputType;
+    Vertex* station;
+    std::string code;
+    switch(inputType) {
+        case 1:
+            std::cout << "Do you wish to see a full list of stations & respective codes? (y/n)\n";
+            char c;
+            std::cin >> c;
+            if (c == 'y') {
+                for (auto v : graph.getVertexSet()) {
+                    if (v->getCode().at(0) == 'P') {
+                        std::cout << v->getCode() << "\n";
+                    }
+                }
+            }
+            std::cout << "Please enter the code of the station you wish to see the cities affected by:\n";
+            std::cin >> code;
+            station = graph.findVertex(code);
+            if (station == nullptr) {
+                std::cout << "Station not found!\n";
+                return 0;
+            }
+            std::cout << "Upon the removal of station with code " << code << ", the following cities will be affected:\n";
+            manager.affectingStations(graph, code);
+            break;
+        case 2:
+            std::cout << "The removal of the following stations does not affect the already existing deficit values: " << "\n";
+            manager.unaffectingStations(graph);
+
+            std::cout << "The water flow deficit will not be affected. These are the current values: " << "\n";
+            manager.flowDeficit(graph);
+            break;
+    }
+
 }
