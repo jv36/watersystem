@@ -34,6 +34,8 @@ public:
 
     void unaffectingStations(Graph graph);
 
+    void affectingPipes(Graph graph, std::string source, std::string dest);
+
 private:
     Graph graph;
     std::vector<Vertex*> reservoirs;

@@ -13,5 +13,7 @@ public:
 private:
     Manager manager;
     Graph graph;
+
+    int affectingPipes();
 };
 #endif //WATERSYSTEM_MENU_H

@@ -388,12 +388,30 @@ void Manager::affectingStations(Graph graph, std::string code) {
         }
 }
 
+void Manager::affectingPipes(Graph graph, std::string source, std::string dest) {
+    graph.removeEdge(source, dest);
+    maxWaterFlow(graph);
+
+    for (auto v : graph.getVertexSet()) {
+        if (v->getCode().at(0) == 'C') {
+            double totalFlow = 0;
+            for (auto e : v->getIncoming()) {
+                totalFlow += e->getFlow();
+            }
+            if (totalFlow < v->getDemand()) {
+                std::cout << v->getCity() << " (" << v->getCode() << ")" << " has a flow deficit of " << v->getDemand() - totalFlow << "\n";
+            }
+        }
+    }
+
+}
+
 void Manager::unaffectingStations(Graph graph) {
     std::vector<std::pair<std::string, double>> stationFlows;
     std::vector<std::pair<std::string, double>> stationFlows2;
     std::vector<std::string> stations;
     maxWaterFlow(graph);
-
+    int counter = 0;
     for (auto v : graph.getVertexSet()) {
         if (v->getCode().at(0) == 'C') {
             double totalFlow = 0;
@@ -405,6 +423,8 @@ void Manager::unaffectingStations(Graph graph) {
             }
         }
     }
+
+
 
     for (auto v : graph.getVertexSet()) {
         if (v->getCode().at(0) == 'P') {
@@ -423,20 +443,31 @@ void Manager::unaffectingStations(Graph graph) {
             for (auto v : newGraph.getVertexSet()) {
                 if (v->getCode().at(0) == 'C') {
                     double totalFlow = 0;
+
                     for (auto e : v->getIncoming()) {
                         totalFlow += e->getFlow();
                     }
-                    if (totalFlow < v->getDemand()) {
+
+                    if (totalFlow < v->getDemand())
+                    {
                         stationFlows2.push_back(std::make_pair(v->getCode(), v->getDemand() - totalFlow));
+                    }
+
+
+                    bool oi = vectorCompare(stationFlows, stationFlows2);
+                    counter++;
+                    std::cout << counter << std::endl;
+                    if (oi) {
+                        stations.push_back(v->getCode());
+                        // stationFlows2.clear();
                     }
                 }
             }
-            if (vectorCompare(stationFlows, stationFlows2)) {
-                stations.push_back(v->getCode());
-            }
-            stationFlows2.clear();
+
+
         }
     }
+
 
     for (auto s : stations) {
         std::cout << s << "\n";
@@ -448,14 +479,42 @@ bool Manager::vectorCompare(const std::vector<std::pair<std::string, double>> &v
         return false;
     }
 
-    for (unsigned i = 0; i < v1.size(); i++) {
-        if (v1[i].first != v2[i].first || v1[i].second != v2[i].second) {
+
+    // Sort the vectors
+    std::vector<std::pair<std::string, double>> sorted_v1 = v1;
+    std::vector<std::pair<std::string, double>> sorted_v2 = v2;
+    std::sort(sorted_v1.begin(), sorted_v1.end(), [](const std::pair<std::string, double> &a, const std::pair<std::string, double> &b) {
+        return a.first < b.first;
+    });
+    std::sort(sorted_v2.begin(), sorted_v2.end(), [](const std::pair<std::string, double> &a, const std::pair<std::string, double> &b) {
+        return a.first < b.first;
+    });
+
+    for (auto s : sorted_v1) {
+        std::cout << s.first << " " << s.second << std::endl;
+    }
+
+    std::cout << "----------------------" << std::endl;
+
+    for (auto s : sorted_v2) {
+        std::cout << s.first << " " << s.second << std::endl;
+    }
+
+    // Compare sorted vectors
+    for (unsigned i = 0; i < sorted_v1.size(); i++) {
+
+        if (sorted_v1[i].first != sorted_v2[i].first) {
+            return false;
+        }
+
+        if (sorted_v1[i].second != sorted_v2[i].second) {
             return false;
         }
     }
 
     return true;
 }
+
 
 
 /*
@@ -485,5 +544,4 @@ Graph Manager::graphCopy(const Graph& graph) {
 
     return newGraph;
 }
-
 

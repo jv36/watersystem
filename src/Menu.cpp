@@ -69,6 +69,10 @@ int Menu::mainMenu() {
             break;
         case 7:
             affectingStations();
+            break;
+        case 8:
+            affectingPipes();
+            break;
         case 9:
             exit(0);
     }
@@ -201,4 +205,29 @@ int Menu::affectingStations() {
             break;
     }
 
+}
+
+
+int Menu::affectingPipes() {
+    std::cout << "Do you wish to see a full list of pipes & respective codes? (y/n)\n";
+    char c;
+    std::cin >> c;
+    if (c == 'y') {
+        for (auto v : graph.getVertexSet()) {
+            for (auto e : v->getAdj()) {
+                std::cout << e->getOrig()->getCode() << " to " << e->getDest()->getCode() << "\n";
+            }
+        }
+    }
+
+    std::string source, dest;
+    std::cout << "Please enter the code of the source pipe:\n";
+    std::cin >> source;
+    std::cout << "Please enter the code of the destination pipe:\n";
+    std::cin >> dest;
+
+    std::cout << "Upon the removal of the pipe from " << source << " to " << dest << ", the following cities will be affected:\n";
+    manager.affectingPipes(graph, source, dest);
+
+    return 0;
 }
