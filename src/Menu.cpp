@@ -21,6 +21,11 @@ int Menu::main() {
     return 0;
 }
 
+/**
+ * @brief Apresenta o menu principal do sistema de gestão de água.
+ * @details Manipula o input do utilizador e redireciona para a função correspondente.
+ * @details Complexidade: O(1)
+ */
 int Menu::mainMenu() {
     std::cout << "+---------------------------------------------------------+\n";
     std::cout << "| Welcome to the Water System!                            |\n";
@@ -80,7 +85,12 @@ int Menu::mainMenu() {
     return 0;
 }
 
-
+/**
+ * @brief Apresenta o menu de reservatórios.
+ * @details Manipula o input do utilizador e redireciona para a função correspondente.
+ * @details Apresenta as cidades afetadas após a remoção de um reservatório especificado pelo utilizador.
+ * @details Complexidade: O(V) - V é o número de vértices no grafo.
+ */
 int Menu::affectingReservoirs() {
     std::cout << "Do you wish to see a full list of reservoirs & respective codes? (y/n)\n";
     char c;
@@ -107,6 +117,12 @@ int Menu::affectingReservoirs() {
 
     return 0;
 }
+
+/*
+ * @brief Apresenta o fluxo máximo para uma cidade específica.
+ * @details Manipula o input do utilizador e redireciona para a função correspondente.
+ * @details Complexidade: O(V) - V é o número de vértices no grafo ou O(1) - depende do input.
+ */
 int Menu::maxFlowToCity() {
     std::cout << "Do you wish to see a full list of cities & respective codes? (y/n)\n";
     char c;
@@ -163,6 +179,11 @@ int Menu::maxFlowToCity() {
     return 0;
 }
 
+/*
+ * @brief Apresenta as estações de bombagem afetadas após a remoção de uma estação específica.
+ * @details Manipula o input do utilizador e redireciona para a função correspondente.
+ * @details Complexidade: O(V) - V é o número de vértices no grafo.
+ */
 int Menu::affectingStations() {
     std::cout << "+-------------------------------+\n";
     std::cout << "| Select type of input:         |\n";
@@ -208,6 +229,12 @@ int Menu::affectingStations() {
 }
 
 
+/*
+ * @brief Apresenta as cidades afetadas após a remoção de um pipe específico.
+ * @details Manipula o input do utilizador e redireciona para a função correspondente.
+ * @details Complexidade: O(V + E) - número de vértices + número de edges.
+ *
+ */
 int Menu::affectingPipes() {
     std::cout << "Do you wish to see a full list of pipes & respective codes? (y/n)\n";
     char c;

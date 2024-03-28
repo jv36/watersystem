@@ -8,6 +8,12 @@
 #include "Graph.h"
 
 
+/**
+ * @brief Faz parse a um ficheiro que contenha dados de reservatórios e coloca os seus dados nas estruturas adequadas.
+ * @details Complexidade: O(N) - número de linhas
+ * @param filename: caminho para o ficheiro .csv correspondente
+ * @param graph: grafo
+ */
 void Manager::createReservoirs(const std::string &filename, Graph& graph) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -35,6 +41,12 @@ void Manager::createReservoirs(const std::string &filename, Graph& graph) {
     }
 }
 
+/**
+ * @brief Faz parse a um ficheiro que contenha dados de cidades e coloca os seus dados nas estruturas adequadas.
+ * @details Complexidade: O(N) - número de linhas
+ * @param filename: caminho para o ficheiro .csv correspondente
+ * @param graph: grafo
+ */
 void Manager::createCities(const std::string &filename, Graph& graph) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -65,6 +77,12 @@ void Manager::createCities(const std::string &filename, Graph& graph) {
     }
 }
 
+/**
+ * @brief Faz parse a um ficheiro que contenha dados de estacões de bombagem e coloca os seus dados nas estruturas adequadas.
+ * @details Complexidade: O(N) - número de linhas
+ * @param filename: caminho para o ficheiro .csv correspondente
+ * @param graph: grafo
+ */
 void Manager::createStations(const std::string &filename, Graph& graph) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -88,6 +106,12 @@ void Manager::createStations(const std::string &filename, Graph& graph) {
     }
 }
 
+/**
+ * @brief Faz parse a um ficheiro que contenha dados de pipes e coloca os seus dados nas estruturas adequadas.
+ * @details Complexidade: O(N) - número de linhas
+ * @param filename: caminho para o ficheiro .csv correspondente
+ * @param graph: grafo
+ */
 void Manager::createPipes(const std::string &filename, Graph& graph) {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -118,6 +142,11 @@ void Manager::createPipes(const std::string &filename, Graph& graph) {
     }
 }
 
+/**
+ * @brief Conta o número de cada tipo de elementos do grafo.
+ * @details Complexidade: O(V+E) - número de vértices e edges
+ * @param graph: grafo
+ */
 void Manager::counter(Graph& graph) {
     std::cout << "Vertex set size: " << graph.getVertexSet().size() << "\n";
 
@@ -162,6 +191,12 @@ void Manager::counter(Graph& graph) {
     std::cout << "Number of pipes: " << number << "\n";
 }
 
+/**
+ * @brief Algoritmo base para determinar max flow, baseado em Edmonds-Karp.
+ * @brief Cria um super-source e um super-sink, aos quais estão ligados todos os reservatórios e cidades.
+ * @details Complexidade: O(V*E^2) - número de vértices e edges
+ * @param graph: grafo
+ */
 void Manager::maxWaterFlow(Graph &graph) {
     // Edmonds-Karp algorithm
     // Possible approach: create a super-source and a super-sink
@@ -192,6 +227,11 @@ void Manager::maxWaterFlow(Graph &graph) {
 }
 
 
+/*
+ * @brief Determina o máximo de água que pode chegar a todas as cidades.
+ * @details Complexidade: O(V*E^2) - número de vértices e edges
+ * @param graph: grafo
+ */
 void Manager::maxWaterFlowTotal(Graph& graph) {
     maxWaterFlow(graph);
     double maxFlow = 0;
@@ -201,6 +241,14 @@ void Manager::maxWaterFlowTotal(Graph& graph) {
     }
     std::cout << "The maximum amount of water that can reach all cities is " << maxFlow;
 }
+
+/*
+ * @brief Determina o máximo de água que pode chegar a uma cidade específica.
+ * @details Utiliza o algoritmo maxWaterFlow para determinar o fluxo máximo.
+ * @details Complexidade: O(V*E^2) - número de vértices e edges
+ * @param graph: grafo
+ * @param city: código da cidade
+ */
 void Manager::maxWaterFlowCity(Graph &graph, const std::string &city) {
     maxWaterFlow(graph);
     Vertex* sink = graph.findVertex("TS");
@@ -212,6 +260,12 @@ void Manager::maxWaterFlowCity(Graph &graph, const std::string &city) {
     }
 }
 
+/*
+ * @brief Determina o máximo de água que pode chegar a todas as cidades.
+ * @details Utiliza o algoritmo maxWaterFlow para determinar o fluxo máximo.
+ * @details Complexidade: O(V*E^2) - número de vértices e edges
+ * @param graph: grafo
+ */
 void Manager::maxWaterFlowAllCities(Graph &graph) {
     maxWaterFlow(graph);
     Vertex* sink = graph.findVertex("TS");
