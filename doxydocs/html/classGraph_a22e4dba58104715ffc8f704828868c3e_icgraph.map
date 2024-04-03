@@ -1,0 +1,12 @@
+<map id="Graph::removeEdge" name="Graph::removeEdge">
+<area shape="rect" id="node1" title="Remove uma aresta de um grafo (this)." alt="" coords="904,56,1055,83"/>
+<area shape="rect" id="node2" href="$classManager.html#a85dd94e3b41c9de6251af4d45431418c" title="Determina o défice nas cidades, após a remoção de uma pipe especificada como parâmetro (códigos dos v..." alt="" coords="660,5,839,32"/>
+<area shape="rect" id="node7" href="$classManager.html#a7e28d727d47dbc41e87ca941fda0193a" title="Determina o défice nas cidades, após a remoção de um reservatório especificado como parâmetro." alt="" coords="643,56,856,83"/>
+<area shape="rect" id="node9" href="$classManager.html#ae9797600528b41c8429bacc6c5852f76" title="Determina o défice nas cidades, após a remoção de uma estação especificada como parâmetro." alt="" coords="651,107,848,133"/>
+<area shape="rect" id="node3" href="$classMenu.html#addf540be18baa095bbc85058d3700522" title="Apresenta as cidades afetadas após a remoção de um pipe específico." alt="" coords="419,5,578,32"/>
+<area shape="rect" id="node4" href="$classMenu.html#af2479c56ab20abe25b90ad64fc092426" title="Apresenta o menu principal do sistema de gestão de água." alt="" coords="220,56,355,83"/>
+<area shape="rect" id="node5" href="$classMenu.html#a117fbfc3ae88c68edda0b4d401c4d67d" title="Apresenta o menu inicial do sistema de gestão de água &#45; usado para escolher o tipo de dataset." alt="" coords="39,5,138,32"/>
+<area shape="rect" id="node6" href="$classMenu.html#a00fffe61903ac88cec13fdb129de8e9d" title="Apresenta o fluxo máximo para uma cidade específica." alt="" coords="5,56,172,83"/>
+<area shape="rect" id="node8" href="$classMenu.html#abb005cc0a694db53ccf6cd60823c15b3" title="Apresenta o menu de reservatórios." alt="" coords="403,56,595,83"/>
+<area shape="rect" id="node10" href="$classMenu.html#a9d961ef172d86ca38a5c6200069284f6" title="Apresenta as estações de bombagem afetadas após a remoção de uma estação específica." alt="" coords="411,107,587,133"/>
+</map>

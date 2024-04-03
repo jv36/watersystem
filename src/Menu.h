@@ -10,10 +10,9 @@ public:
     int maxFlowToCity();
     int affectingReservoirs();
     int affectingStations();
+    int affectingPipes();
 private:
     Manager manager;
     Graph graph;
-
-    int affectingPipes();
 };
 #endif //WATERSYSTEM_MENU_H

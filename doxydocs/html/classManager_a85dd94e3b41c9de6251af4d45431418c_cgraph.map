@@ -1,0 +1,21 @@
+<map id="Manager::affectingPipes" name="Manager::affectingPipes">
+<area shape="rect" id="node1" title="Determina o défice nas cidades, após a remoção de uma pipe especificada como parâmetro (códigos dos v..." alt="" coords="5,203,184,229"/>
+<area shape="rect" id="node2" href="$classGraph.html#a619ac583094079134074658e29463c0e" title="Obtém o conjunto de vértices de um grafo." alt="" coords="987,5,1140,32"/>
+<area shape="rect" id="node3" href="$classManager.html#ad31fd6f689a633d0da64dabcc312cb15" title="Algoritmo base para determinar max flow, baseado em Edmonds&#45;Karp." alt="" coords="232,203,417,229"/>
+<area shape="rect" id="node16" href="$classGraph.html#a22e4dba58104715ffc8f704828868c3e" title="Remove uma aresta de um grafo (this)." alt="" coords="249,304,400,331"/>
+<area shape="rect" id="node4" href="$classGraph.html#a59bf2bfabb7e3885e1e9d3267f91f7cd" title="Adiciona uma aresta a um grafo (this), dado o conteúdo dos vértices de origem e destino e o peso da a..." alt="" coords="491,203,617,229"/>
+<area shape="rect" id="node6" href="$classGraph.html#a59a5e666d2b7dc025704d7e6bce95c01" title="Adiciona um vértice com um dado conteúdo (v) a um grafo (this)." alt="" coords="487,253,621,280"/>
+<area shape="rect" id="node7" href="$classVertex.html#a89a00554f777a1dfdd8797b822d308bc" title="Obtém o código de um vértice." alt="" coords="748,333,875,360"/>
+<area shape="rect" id="node8" href="$classManager.html#a82115c527f8fd33a9c1f9a6d1e206498" title="Executa o algoritmo de Edmonds&#45;Karp para determinar o fluxo máximo." alt="" coords="465,152,643,179"/>
+<area shape="rect" id="node5" href="$classGraph.html#a367936fd417251cb1e1738cf6662b3db" title="Função auxiliar para encontrar um vértice com um dado conteúdo." alt="" coords="744,275,879,301"/>
+<area shape="rect" id="node9" href="$classManager.html#af168aacf5bb7c35394a0d7ed22b6f947" title="Aumenta o fluxo ao longo de um caminho." alt="" coords="691,157,932,184"/>
+<area shape="rect" id="node10" href="$classManager.html#aec073d02d86472768bdbfbc0dc29a821" title="Encontra augmenting paths no grafo." alt="" coords="699,107,924,133"/>
+<area shape="rect" id="node15" href="$classManager.html#adf5fa40e970bd013f15e672d3ac5f3c5" title="Encontra o fluxo mínimo (residual) ao longo de um caminho." alt="" coords="716,209,907,250"/>
+<area shape="rect" id="node11" href="$classVertex.html#aa4bd82105b85ee53a917391f4811cd8a" title="Verifica se um vértice foi visitado." alt="" coords="1199,56,1327,83"/>
+<area shape="rect" id="node12" href="$classVertex.html#a15eeabbbb6d517af746ae137c6d5b595" title="Define se um vértice foi visitado." alt="" coords="1195,157,1332,184"/>
+<area shape="rect" id="node13" href="$classManager.html#a8f591320e28d98009145b46f4f4603a0" title="Testa e visita um vértice." alt="" coords="980,107,1147,133"/>
+<area shape="rect" id="node14" href="$classVertex.html#abe4bc30005eec65e775d0cd51f456460" title="Define a aresta que liga um vértice ao seu path." alt="" coords="1203,107,1323,133"/>
+<area shape="rect" id="node17" href="$classVertex.html#a4d8890c92e810f8cdbc7777e45b16538" title="Função auxiliar para remover uma aresta de saída (com um destino (d) dado) de um vértice (this)." alt="" coords="477,405,631,432"/>
+<area shape="rect" id="node18" href="$classVertex.html#ac2a80daa5a6a208173f55d4d161334f1" title="Remove uma aresta de um vértice." alt="" coords="739,452,884,479"/>
+<area shape="rect" id="node19" href="$classEdge.html#a5cda44e9ba257b03963a1ac301371a59" title="Obtém o vértice de destino de uma aresta." alt="" coords="1007,427,1120,453"/>
+</map>

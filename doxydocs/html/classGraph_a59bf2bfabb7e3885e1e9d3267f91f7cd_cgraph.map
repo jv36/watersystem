@@ -1,0 +1,4 @@
+<map id="Graph::addEdge" name="Graph::addEdge">
+<area shape="rect" id="node1" title="Adiciona uma aresta a um grafo (this), dado o conteúdo dos vértices de origem e destino e o peso da a..." alt="" coords="5,5,131,32"/>
+<area shape="rect" id="node2" href="$classGraph.html#a367936fd417251cb1e1738cf6662b3db" title="Função auxiliar para encontrar um vértice com um dado conteúdo." alt="" coords="179,5,313,32"/>
+</map>

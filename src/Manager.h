@@ -32,7 +32,6 @@ public:
 
     void affectingStations(Graph graph, std::string code);
 
-    void unaffectingStations(Graph graph);
 
     void affectingPipes(Graph graph, std::string source, std::string dest);
 
@@ -42,12 +41,6 @@ private:
     std::vector<Vertex*> cities;
     std::vector<Vertex*> stations;
     std::vector<Edge*> pipes;
-
-
-    Graph graphCopy(const Graph &graph);
-
-    bool vectorCompare(const std::vector<std::pair<std::string, double>> &v1,
-                       const std::vector<std::pair<std::string, double>> &v2);
 };
 
 

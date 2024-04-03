@@ -1,0 +1,20 @@
+<map id="Vertex::isVisited" name="Vertex::isVisited">
+<area shape="rect" id="node1" title="Verifica se um vértice foi visitado." alt="" coords="1940,157,2068,184"/>
+<area shape="rect" id="node2" href="$classManager.html#aec073d02d86472768bdbfbc0dc29a821" title="Encontra augmenting paths no grafo." alt="" coords="1452,157,1677,184"/>
+<area shape="rect" id="node18" href="$classManager.html#a8f591320e28d98009145b46f4f4603a0" title="Testa e visita um vértice." alt="" coords="1725,183,1892,209"/>
+<area shape="rect" id="node3" href="$classManager.html#a82115c527f8fd33a9c1f9a6d1e206498" title="Executa o algoritmo de Edmonds&#45;Karp para determinar o fluxo máximo." alt="" coords="1227,157,1404,184"/>
+<area shape="rect" id="node4" href="$classManager.html#ad31fd6f689a633d0da64dabcc312cb15" title="Algoritmo base para determinar max flow, baseado em Edmonds&#45;Karp." alt="" coords="993,157,1179,184"/>
+<area shape="rect" id="node5" href="$classManager.html#a85dd94e3b41c9de6251af4d45431418c" title="Determina o défice nas cidades, após a remoção de uma pipe especificada como parâmetro (códigos dos v..." alt="" coords="748,56,927,83"/>
+<area shape="rect" id="node10" href="$classManager.html#a7e28d727d47dbc41e87ca941fda0193a" title="Determina o défice nas cidades, após a remoção de um reservatório especificado como parâmetro." alt="" coords="731,107,944,133"/>
+<area shape="rect" id="node12" href="$classManager.html#ae9797600528b41c8429bacc6c5852f76" title="Determina o défice nas cidades, após a remoção de uma estação especificada como parâmetro." alt="" coords="739,157,936,184"/>
+<area shape="rect" id="node14" href="$classManager.html#a870b202ec930b7502805a189179958b1" title="Determina as cidades com défice de água." alt="" coords="502,208,658,235"/>
+<area shape="rect" id="node15" href="$classManager.html#a6ebad45f8162ab02888a5d7b0ca7de4f" title="Determina o máximo de água que pode chegar a todas as cidades." alt="" coords="479,259,681,301"/>
+<area shape="rect" id="node16" href="$classManager.html#a4339e585267ecc64a0e997cf0938993c" title="Determina o máximo de água que pode chegar a uma cidade específica." alt="" coords="220,220,431,247"/>
+<area shape="rect" id="node17" href="$classManager.html#a915fe77cedac30db35d565b37a47cb84" title="Determina o máximo de água que pode chegar a todas as cidades." alt="" coords="729,5,945,32"/>
+<area shape="rect" id="node6" href="$classMenu.html#addf540be18baa095bbc85058d3700522" title="Apresenta as cidades afetadas após a remoção de um pipe específico." alt="" coords="501,56,659,83"/>
+<area shape="rect" id="node7" href="$classMenu.html#af2479c56ab20abe25b90ad64fc092426" title="Apresenta o menu principal do sistema de gestão de água." alt="" coords="258,157,393,184"/>
+<area shape="rect" id="node8" href="$classMenu.html#a117fbfc3ae88c68edda0b4d401c4d67d" title="Apresenta o menu inicial do sistema de gestão de água &#45; usado para escolher o tipo de dataset." alt="" coords="39,144,138,171"/>
+<area shape="rect" id="node9" href="$classMenu.html#a00fffe61903ac88cec13fdb129de8e9d" title="Apresenta o fluxo máximo para uma cidade específica." alt="" coords="5,195,172,221"/>
+<area shape="rect" id="node11" href="$classMenu.html#abb005cc0a694db53ccf6cd60823c15b3" title="Apresenta o menu de reservatórios." alt="" coords="484,107,676,133"/>
+<area shape="rect" id="node13" href="$classMenu.html#a9d961ef172d86ca38a5c6200069284f6" title="Apresenta as estações de bombagem afetadas após a remoção de uma estação específica." alt="" coords="492,157,668,184"/>
+</map>

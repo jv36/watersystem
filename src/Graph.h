@@ -2,6 +2,7 @@
 #define WATERSYSTEM_GRAPH_H
 // Original code by Gonçalo Leão
 // Updated by DA 2023/2024 Team
+// Adaptation to the project
 
 #include <iostream>
 #include <vector>
@@ -22,28 +23,18 @@ public:
 
     std::vector<Edge*> getAdj() const;
     bool isVisited() const;
-    bool isProcessing() const;
-    unsigned int getIndegree() const;
-    double getDist() const;
     Edge* getPath() const;
     std::vector<Edge*> getIncoming() const;
 
     void setVisited(bool visited);
-    void setProcesssing(bool processing);
-    void setIndegree(unsigned int indegree);
-    void setDist(double dist);
     void setPath(Edge *path);
     Edge* addEdge(Vertex *dest, double w);
     bool removeEdge(std::string in);
     void removeOutgoingEdges();
 
     double getMaxDelivery() const;
-    std::string getReservoir() const;
-    std::string getMunicipality() const;
-    int getID() const;
     std::string getCode() const;
     double getDemand() const;
-    int getPopulation() const;
     std::string getCity() const;
 
 protected:
@@ -80,7 +71,6 @@ public:
     double getCapacity() const;
     bool isSelected() const;
     Vertex* getOrig() const;
-    Edge* getReverse() const;
     double getFlow() const;
 
     void setSelected(bool selected);
@@ -124,19 +114,12 @@ public:
     bool addEdge(const std::string &sourc, const std::string &dest, double w);
     bool removeEdge(const std::string &source, const std::string &dest);
     bool addBidirectionalEdge(const std::string &sourc, const std::string &dest, double w);
-
-    int getNumVertex() const;
     std::vector<Vertex*> getVertexSet() const;
 protected:
     std::vector<Vertex*> vertexSet;    // vertex set
 
     double ** distMatrix = nullptr;   // dist matrix for Floyd-Warshall
     int **pathMatrix = nullptr;   // path matrix for Floyd-Warshall
-
-    /*
-     * Finds the index o    friend class MutablePriorityQueue<Vertex>;f the vertex with a given content.
-     */
-    int findVertexIdx(const std::string &in) const;
 };
 
 void deleteMatrix(int **m, int n);

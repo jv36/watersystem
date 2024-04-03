@@ -1,0 +1,6 @@
+<map id="Manager::createPipes" name="Manager::createPipes">
+<area shape="rect" id="node1" title="Faz parse a um ficheiro que contenha dados de pipes e coloca os seus dados nas estruturas adequadas." alt="" coords="5,31,168,57"/>
+<area shape="rect" id="node2" href="$classGraph.html#a505e21b2392f34f795f363bfe787c7da" title="Adiciona uma aresta bidirecional a um grafo (this)." alt="" coords="216,5,423,32"/>
+<area shape="rect" id="node4" href="$classGraph.html#a59bf2bfabb7e3885e1e9d3267f91f7cd" title="Adiciona uma aresta a um grafo (this), dado o conteúdo dos vértices de origem e destino e o peso da a..." alt="" coords="257,56,382,83"/>
+<area shape="rect" id="node3" href="$classGraph.html#a367936fd417251cb1e1738cf6662b3db" title="Função auxiliar para encontrar um vértice com um dado conteúdo." alt="" coords="471,31,605,57"/>
+</map>

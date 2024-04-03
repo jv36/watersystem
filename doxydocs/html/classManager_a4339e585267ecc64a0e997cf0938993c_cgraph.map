@@ -1,0 +1,19 @@
+<map id="Manager::maxWaterFlowCity" name="Manager::maxWaterFlowCity">
+<area shape="rect" id="node1" title="Determina o máximo de água que pode chegar a uma cidade específica." alt="" coords="5,126,216,153"/>
+<area shape="rect" id="node2" href="$classGraph.html#a367936fd417251cb1e1738cf6662b3db" title="Função auxiliar para encontrar um vértice com um dado conteúdo." alt="" coords="776,25,911,51"/>
+<area shape="rect" id="node3" href="$classVertex.html#a8283a8eb5e4b3a34175968d361ee4820" title="Obtém a cidade de um vértice." alt="" coords="297,151,416,178"/>
+<area shape="rect" id="node4" href="$classVertex.html#a84b20dae22321e5a729606885357b015" title="Obtém a lista de arestas que entram num vértice." alt="" coords="280,202,433,229"/>
+<area shape="rect" id="node5" href="$classManager.html#ad31fd6f689a633d0da64dabcc312cb15" title="Algoritmo base para determinar max flow, baseado em Edmonds&#45;Karp." alt="" coords="264,101,449,127"/>
+<area shape="rect" id="node6" href="$classGraph.html#a59bf2bfabb7e3885e1e9d3267f91f7cd" title="Adiciona uma aresta a um grafo (this), dado o conteúdo dos vértices de origem e destino e o peso da a..." alt="" coords="523,25,649,51"/>
+<area shape="rect" id="node7" href="$classGraph.html#a59a5e666d2b7dc025704d7e6bce95c01" title="Adiciona um vértice com um dado conteúdo (v) a um grafo (this)." alt="" coords="519,75,653,102"/>
+<area shape="rect" id="node8" href="$classVertex.html#a89a00554f777a1dfdd8797b822d308bc" title="Obtém o código de um vértice." alt="" coords="780,75,907,102"/>
+<area shape="rect" id="node9" href="$classManager.html#a82115c527f8fd33a9c1f9a6d1e206498" title="Executa o algoritmo de Edmonds&#45;Karp para determinar o fluxo máximo." alt="" coords="497,177,675,203"/>
+<area shape="rect" id="node12" href="$classGraph.html#a619ac583094079134074658e29463c0e" title="Obtém o conjunto de vértices de um grafo." alt="" coords="1019,269,1172,295"/>
+<area shape="rect" id="node10" href="$classManager.html#af168aacf5bb7c35394a0d7ed22b6f947" title="Aumenta o fluxo ao longo de um caminho." alt="" coords="723,243,964,270"/>
+<area shape="rect" id="node11" href="$classManager.html#aec073d02d86472768bdbfbc0dc29a821" title="Encontra augmenting paths no grafo." alt="" coords="731,345,956,371"/>
+<area shape="rect" id="node17" href="$classManager.html#adf5fa40e970bd013f15e672d3ac5f3c5" title="Encontra o fluxo mínimo (residual) ao longo de um caminho." alt="" coords="748,177,939,219"/>
+<area shape="rect" id="node13" href="$classVertex.html#aa4bd82105b85ee53a917391f4811cd8a" title="Verifica se um vértice foi visitado." alt="" coords="1231,319,1359,346"/>
+<area shape="rect" id="node14" href="$classVertex.html#a15eeabbbb6d517af746ae137c6d5b595" title="Define se um vértice foi visitado." alt="" coords="1227,421,1364,447"/>
+<area shape="rect" id="node15" href="$classManager.html#a8f591320e28d98009145b46f4f4603a0" title="Testa e visita um vértice." alt="" coords="1012,370,1179,397"/>
+<area shape="rect" id="node16" href="$classVertex.html#abe4bc30005eec65e775d0cd51f456460" title="Define a aresta que liga um vértice ao seu path." alt="" coords="1235,370,1355,397"/>
+</map>

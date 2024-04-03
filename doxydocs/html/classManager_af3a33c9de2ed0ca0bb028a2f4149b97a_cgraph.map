@@ -1,0 +1,4 @@
+<map id="Manager::counter" name="Manager::counter">
+<area shape="rect" id="node1" title="Conta o número de cada tipo de elementos do grafo." alt="" coords="5,5,141,32"/>
+<area shape="rect" id="node2" href="$classGraph.html#a619ac583094079134074658e29463c0e" title="Obtém o conjunto de vértices de um grafo." alt="" coords="189,5,343,32"/>
+</map>

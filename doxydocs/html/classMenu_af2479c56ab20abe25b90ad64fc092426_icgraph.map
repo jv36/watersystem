@@ -1,0 +1,5 @@
+<map id="Menu::mainMenu" name="Menu::mainMenu">
+<area shape="rect" id="node1" title="Apresenta o menu principal do sistema de gestão de água." alt="" coords="220,56,355,83"/>
+<area shape="rect" id="node2" href="$classMenu.html#a117fbfc3ae88c68edda0b4d401c4d67d" title="Apresenta o menu inicial do sistema de gestão de água &#45; usado para escolher o tipo de dataset." alt="" coords="39,5,138,32"/>
+<area shape="rect" id="node3" href="$classMenu.html#a00fffe61903ac88cec13fdb129de8e9d" title="Apresenta o fluxo máximo para uma cidade específica." alt="" coords="5,56,172,83"/>
+</map>

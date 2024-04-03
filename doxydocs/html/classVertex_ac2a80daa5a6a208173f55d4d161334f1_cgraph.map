@@ -1,0 +1,4 @@
+<map id="Vertex::deleteEdge" name="Vertex::deleteEdge">
+<area shape="rect" id="node1" title="Remove uma aresta de um vértice." alt="" coords="5,5,151,32"/>
+<area shape="rect" id="node2" href="$classEdge.html#a5cda44e9ba257b03963a1ac301371a59" title="Obtém o vértice de destino de uma aresta." alt="" coords="199,5,312,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="Manager::testAndVisit" name="Manager::testAndVisit">
+<area shape="rect" id="node1" title="Testa e visita um vértice." alt="" coords="5,56,172,83"/>
+<area shape="rect" id="node2" href="$classVertex.html#aa4bd82105b85ee53a917391f4811cd8a" title="Verifica se um vértice foi visitado." alt="" coords="225,5,353,32"/>
+<area shape="rect" id="node3" href="$classVertex.html#abe4bc30005eec65e775d0cd51f456460" title="Define a aresta que liga um vértice ao seu path." alt="" coords="229,56,349,83"/>
+<area shape="rect" id="node4" href="$classVertex.html#a15eeabbbb6d517af746ae137c6d5b595" title="Define se um vértice foi visitado." alt="" coords="220,107,357,133"/>
+</map>

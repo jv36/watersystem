@@ -1,0 +1,13 @@
+<map id="Manager::edmondsKarp" name="Manager::edmondsKarp">
+<area shape="rect" id="node1" title="Executa o algoritmo de Edmonds&#45;Karp para determinar o fluxo máximo." alt="" coords="5,136,183,163"/>
+<area shape="rect" id="node2" href="$classManager.html#af168aacf5bb7c35394a0d7ed22b6f947" title="Aumenta o fluxo ao longo de um caminho." alt="" coords="231,5,472,32"/>
+<area shape="rect" id="node3" href="$classManager.html#aec073d02d86472768bdbfbc0dc29a821" title="Encontra augmenting paths no grafo." alt="" coords="239,107,464,133"/>
+<area shape="rect" id="node4" href="$classGraph.html#a619ac583094079134074658e29463c0e" title="Obtém o conjunto de vértices de um grafo." alt="" coords="527,56,680,83"/>
+<area shape="rect" id="node9" href="$classManager.html#adf5fa40e970bd013f15e672d3ac5f3c5" title="Encontra o fluxo mínimo (residual) ao longo de um caminho." alt="" coords="256,158,447,199"/>
+<area shape="rect" id="node10" href="$classGraph.html#a367936fd417251cb1e1738cf6662b3db" title="Função auxiliar para encontrar um vértice com um dado conteúdo." alt="" coords="284,224,419,251"/>
+<area shape="rect" id="node11" href="$classVertex.html#a89a00554f777a1dfdd8797b822d308bc" title="Obtém o código de um vértice." alt="" coords="288,275,415,301"/>
+<area shape="rect" id="node5" href="$classVertex.html#aa4bd82105b85ee53a917391f4811cd8a" title="Verifica se um vértice foi visitado." alt="" coords="739,107,867,133"/>
+<area shape="rect" id="node6" href="$classVertex.html#a15eeabbbb6d517af746ae137c6d5b595" title="Define se um vértice foi visitado." alt="" coords="735,208,872,235"/>
+<area shape="rect" id="node7" href="$classManager.html#a8f591320e28d98009145b46f4f4603a0" title="Testa e visita um vértice." alt="" coords="520,157,687,184"/>
+<area shape="rect" id="node8" href="$classVertex.html#abe4bc30005eec65e775d0cd51f456460" title="Define a aresta que liga um vértice ao seu path." alt="" coords="743,157,863,184"/>
+</map>

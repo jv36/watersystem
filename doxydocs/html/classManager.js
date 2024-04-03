@@ -1,0 +1,26 @@
+var classManager =
+[
+    [ "createReservoirs", "classManager.html#a107678f603cf1f2c19d125eded0bad7d", null ],
+    [ "createPipes", "classManager.html#a254a70e5d82bd9da1f91fed6aa0e29d7", null ],
+    [ "createCities", "classManager.html#a0ce6bb5f3bcee207721b032c2709558f", null ],
+    [ "createStations", "classManager.html#ae86cd5edae7316fa4a5bbde93ca74482", null ],
+    [ "counter", "classManager.html#af3a33c9de2ed0ca0bb028a2f4149b97a", null ],
+    [ "maxWaterFlow", "classManager.html#ad31fd6f689a633d0da64dabcc312cb15", null ],
+    [ "maxWaterFlowTotal", "classManager.html#a915fe77cedac30db35d565b37a47cb84", null ],
+    [ "maxWaterFlowCity", "classManager.html#a4339e585267ecc64a0e997cf0938993c", null ],
+    [ "maxWaterFlowAllCities", "classManager.html#a6ebad45f8162ab02888a5d7b0ca7de4f", null ],
+    [ "flowDeficit", "classManager.html#a870b202ec930b7502805a189179958b1", null ],
+    [ "affectingReservoirs", "classManager.html#a7e28d727d47dbc41e87ca941fda0193a", null ],
+    [ "edmondsKarp", "classManager.html#a82115c527f8fd33a9c1f9a6d1e206498", null ],
+    [ "findAugmentingPaths", "classManager.html#aec073d02d86472768bdbfbc0dc29a821", null ],
+    [ "findMinResidualAlongPath", "classManager.html#adf5fa40e970bd013f15e672d3ac5f3c5", null ],
+    [ "augmentFlowAlongPath", "classManager.html#af168aacf5bb7c35394a0d7ed22b6f947", null ],
+    [ "testAndVisit", "classManager.html#a8f591320e28d98009145b46f4f4603a0", null ],
+    [ "affectingStations", "classManager.html#ae9797600528b41c8429bacc6c5852f76", null ],
+    [ "affectingPipes", "classManager.html#a85dd94e3b41c9de6251af4d45431418c", null ],
+    [ "graph", "classManager.html#aad898193493121aca744e7208a1dea65", null ],
+    [ "reservoirs", "classManager.html#a639df23e58e30ecd1c2ba840990e6550", null ],
+    [ "cities", "classManager.html#aa430755a97c03735e4c6278e826ff4bb", null ],
+    [ "stations", "classManager.html#a8317e2880f51b6da86c7e6cb4ea4bbf4", null ],
+    [ "pipes", "classManager.html#aecad8a22eff66d79ac7f73fb7b681b84", null ]
+];

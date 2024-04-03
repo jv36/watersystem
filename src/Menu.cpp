@@ -2,21 +2,51 @@
 #include <iostream>
 
 
+/**
+ * @brief Apresenta o menu inicial do sistema de gestão de água - usado para escolher o tipo de dataset.
+ * @details Manipula o input do utilizador e redireciona para a função correspondente.
+ * @details Complexidade: O(1)
+ */
 int Menu::main() {
     Manager manager;
-    manager.createReservoirs("../largedataset/Reservoir.csv", graph);
-    manager.createCities("../largedataset/Cities.csv", graph);
-    manager.createStations("../largedataset/Stations.csv", graph);
-    manager.createPipes("../largedataset/Pipes.csv", graph);
 
-    /*
-    manager.createReservoirs("../smalldataset/Reservoirs_Madeira.csv", graph);
-    manager.createCities("../smalldataset/Cities_Madeira.csv", graph);
-    manager.createStations("../smalldataset/Stations_Madeira.csv", graph);
-    manager.createPipes("../smalldataset/Pipes_Madeira.csv", graph);
-     */
+    std::cout << "+---------------------------------------------------------+\n";
+    std::cout << "| Before starting, you have to choose a dataset           |\n";         
+    std::cout << "| to perform the operations.                              |\n";
+    std::cout << "|                                                         |\n";
+    std::cout << "| 1 - Madeira Island                                      |\n";
+    std::cout << "| 2 - Continental Portugal                                |\n";
+    std::cout << "| ======================================================= |\n";
+    std::cout << "| Please enter your choice:                               |\n";
+    std::cout << "+---------------------------------------------------------+\n";
+    int n;
+    std::cin >> n;
+    std::cout << std::endl;
 
+    if (std::cin.fail()) {
+        throw std::invalid_argument("Error 001: Your input was not an integer. Please restart the program and try again.");
+    }
 
+    while ((n < 1 || n > 2 ) && !(std::cin.fail())) {
+        std::cout << "Choose a valid option." << std::endl;
+        std::cin >> n;
+        std::cout << std::endl;
+    }
+
+    switch(n) {
+        case 1:
+            manager.createReservoirs("../smalldataset/Reservoirs_Madeira.csv", graph);
+            manager.createCities("../smalldataset/Cities_Madeira.csv", graph);
+            manager.createStations("../smalldataset/Stations_Madeira.csv", graph);
+            manager.createPipes("../smalldataset/Pipes_Madeira.csv", graph);
+            break;
+        case 2:
+            manager.createReservoirs("../largedataset/Reservoir.csv", graph);
+            manager.createCities("../largedataset/Cities.csv", graph);
+            manager.createStations("../largedataset/Stations.csv", graph);
+            manager.createPipes("../largedataset/Pipes.csv", graph);
+            break;
+    }
     mainMenu();
     return 0;
 }
@@ -36,7 +66,7 @@ int Menu::mainMenu() {
     std::cout << "| the terminal.                                           |\n";
     std::cout << "|                                                         |\n";
     std::cout << "| ==================== Main Menu ======================== |\n";
-    std::cout << "| 1 - Number of elements (DEBUG)                          |\n";
+    std::cout << "| 1 - Number of elements                                  |\n";
     std::cout << "| 2 - Maximum network flow                                |\n";
     std::cout << "| 3 - Maximum amount of water that can reach a given city |\n";
     std::cout << "| 4 - List max flow for all cities                        |\n";
@@ -52,6 +82,16 @@ int Menu::mainMenu() {
     int n;
     std::cin >> n;
     std::cout << std::endl;
+
+    if (std::cin.fail()) {
+        throw std::invalid_argument("Error 001: Your input was not an integer. Please restart the program and try again.");
+    }
+
+    while ((n < 1 || n > 9 ) && !(std::cin.fail())) {
+        std::cout << "Choose a valid option." << std::endl;
+        std::cin >> n;
+        std::cout << std::endl;
+    }
 
     switch(n) {
         case 1:
@@ -118,7 +158,7 @@ int Menu::affectingReservoirs() {
     return 0;
 }
 
-/*
+/**
  * @brief Apresenta o fluxo máximo para uma cidade específica.
  * @details Manipula o input do utilizador e redireciona para a função correspondente.
  * @details Complexidade: O(V) - V é o número de vértices no grafo ou O(1) - depende do input.
@@ -143,6 +183,17 @@ int Menu::maxFlowToCity() {
     std::cout << "+-------------------------------+\n";
     int inputType;
     std::cin >> inputType;
+
+    if (std::cin.fail()) {
+        throw std::invalid_argument("Error 001: Your input was not an integer. Please restart the program and try again.");
+    }
+
+    while ((inputType < 1 || inputType > 3 ) && !(std::cin.fail())) {
+        std::cout << "Choose a valid option." << std::endl;
+        std::cin >> inputType;
+        std::cout << std::endl;
+    }
+
     Vertex* city;
     std::string name, code;
     switch (inputType) {
@@ -179,57 +230,41 @@ int Menu::maxFlowToCity() {
     return 0;
 }
 
-/*
+/**
  * @brief Apresenta as estações de bombagem afetadas após a remoção de uma estação específica.
  * @details Manipula o input do utilizador e redireciona para a função correspondente.
  * @details Complexidade: O(V) - V é o número de vértices no grafo.
  */
 int Menu::affectingStations() {
-    std::cout << "+-------------------------------+\n";
-    std::cout << "| Select type of input:         |\n";
-    std::cout << "| 1 - Specific station          |\n";
-    std::cout << "| 2 - Unaffecting stations      |\n";
-    std::cout << "| 3 - Return to main menu       |\n";
-    std::cout << "+-------------------------------+\n";
-    int inputType;
-    std::cin >> inputType;
+
     Vertex* station;
     std::string code;
-    switch(inputType) {
-        case 1:
-            std::cout << "Do you wish to see a full list of stations & respective codes? (y/n)\n";
-            char c;
-            std::cin >> c;
-            if (c == 'y') {
-                for (auto v : graph.getVertexSet()) {
-                    if (v->getCode().at(0) == 'P') {
-                        std::cout << v->getCode() << "\n";
-                    }
-                }
-            }
-            std::cout << "Please enter the code of the station you wish to see the cities affected by:\n";
-            std::cin >> code;
-            station = graph.findVertex(code);
-            if (station == nullptr) {
-                std::cout << "Station not found!\n";
-                return 0;
-            }
-            std::cout << "Upon the removal of station with code " << code << ", the following cities will be affected:\n";
-            manager.affectingStations(graph, code);
-            break;
-        case 2:
-            std::cout << "The removal of the following stations does not affect the already existing deficit values: " << "\n";
-            manager.unaffectingStations(graph);
 
-            std::cout << "The water flow deficit will not be affected. These are the current values: " << "\n";
-            manager.flowDeficit(graph);
-            break;
+    std::cout << "Do you wish to see a full list of stations & respective codes? (y/n)\n";
+    char c;
+    std::cin >> c;
+    if (c == 'y') {
+        for (auto v : graph.getVertexSet()) {
+            if (v->getCode().at(0) == 'P') {
+                std::cout << v->getCode() << "\n";
+            }
+        }
     }
+    std::cout << "Please enter the code of the station you wish to see the cities affected by:\n";
+    std::cin >> code;
+    station = graph.findVertex(code);
+    if (station == nullptr) {
+        std::cout << "Station not found!\n";
+        return 0;
+    }
+    std::cout << "Upon the removal of station with code " << code << ", the following cities will be affected:\n";
+    manager.affectingStations(graph, code);
+    return 0;
 
 }
 
 
-/*
+/**
  * @brief Apresenta as cidades afetadas após a remoção de um pipe específico.
  * @details Manipula o input do utilizador e redireciona para a função correspondente.
  * @details Complexidade: O(V + E) - número de vértices + número de edges.

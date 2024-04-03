@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WaterSystem (DA 2023/24): Código-Fonte de src/Graph.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">WaterSystem (DA 2023/24)
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'Localizar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('Graph_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Graph.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="Graph_8cpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="Graph_8h.html">Graph.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classVertex.html#a4d8890c92e810f8cdbc7777e45b16538">   10</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classVertex.html#a4d8890c92e810f8cdbc7777e45b16538">Vertex::removeEdge</a>(std::string in) {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">bool</span> removedEdge = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keyword">auto</span> it = <a class="code hl_variable" href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">adj</a>.begin();</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">while</span> (it != <a class="code hl_variable" href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">adj</a>.end()) {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <a class="code hl_class" href="classEdge.html">Edge</a> *edge = *it;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <a class="code hl_class" href="classVertex.html">Vertex</a> *dest = edge-&gt;<a class="code hl_function" href="classEdge.html#a5cda44e9ba257b03963a1ac301371a59">getDest</a>();</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordflow">if</span> (dest-&gt;<a class="code hl_function" href="classVertex.html#a89a00554f777a1dfdd8797b822d308bc">getCode</a>() == in) {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            it = <a class="code hl_variable" href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">adj</a>.erase(it);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <a class="code hl_function" href="classVertex.html#ac2a80daa5a6a208173f55d4d161334f1">deleteEdge</a>(edge);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            removedEdge = <span class="keyword">true</span>; <span class="comment">// allows for multiple edges to connect the same pair of vertices (multigraph)</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            it++;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">return</span> removedEdge;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classVertex.html#afcde6d707aff7627df7adde8d8b74a89">   32</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classVertex.html#afcde6d707aff7627df7adde8d8b74a89">Vertex::removeOutgoingEdges</a>() {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">auto</span> it = <a class="code hl_variable" href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">adj</a>.begin();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">while</span> (it != <a class="code hl_variable" href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">adj</a>.end()) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <a class="code hl_class" href="classEdge.html">Edge</a> *edge = *it;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        it = <a class="code hl_variable" href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">adj</a>.erase(it);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_function" href="classVertex.html#ac2a80daa5a6a208173f55d4d161334f1">deleteEdge</a>(edge);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classVertex.html#ad4ccd48170a1530ec1db5eb306357a74">   46</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classVertex.html#ad4ccd48170a1530ec1db5eb306357a74">Vertex::operator&lt;</a>(<a class="code hl_class" href="classVertex.html">Vertex</a> &amp; vertex)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classVertex.html#a11d98611f5101fe7f46785d8b9c53f44">dist</a> &lt; vertex.<a class="code hl_variable" href="classVertex.html#a11d98611f5101fe7f46785d8b9c53f44">dist</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classVertex.html#a9858f2aa388d2bfb49d9df8f4504b5a0">   55</a></span>std::vector&lt;Edge*&gt; <a class="code hl_function" href="classVertex.html#a9858f2aa388d2bfb49d9df8f4504b5a0">Vertex::getAdj</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">adj</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classVertex.html#aa4bd82105b85ee53a917391f4811cd8a">   64</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classVertex.html#aa4bd82105b85ee53a917391f4811cd8a">Vertex::isVisited</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classVertex.html#aaef9f7de91b4b8f1752d391a1aae9c2e">visited</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>}</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classVertex.html#a6e120e57da6af94892fae44e05868794">   73</a></span><a class="code hl_class" href="classEdge.html">Edge</a> *<a class="code hl_function" href="classVertex.html#a6e120e57da6af94892fae44e05868794">Vertex::getPath</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classVertex.html#a4e83821f961f6eb63ad210260ba0e1e2">path</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classVertex.html#a84b20dae22321e5a729606885357b015">   82</a></span>std::vector&lt;Edge *&gt; <a class="code hl_function" href="classVertex.html#a84b20dae22321e5a729606885357b015">Vertex::getIncoming</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classVertex.html#a5f53541a932a1c2ac0ed4b838a0af2b5">incoming</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classVertex.html#a15eeabbbb6d517af746ae137c6d5b595">   91</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classVertex.html#a15eeabbbb6d517af746ae137c6d5b595">Vertex::setVisited</a>(<span class="keywordtype">bool</span> visited) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    this-&gt;visited = <a class="code hl_variable" href="classVertex.html#aaef9f7de91b4b8f1752d391a1aae9c2e">visited</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classVertex.html#abe4bc30005eec65e775d0cd51f456460">  100</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classVertex.html#abe4bc30005eec65e775d0cd51f456460">Vertex::setPath</a>(<a class="code hl_class" href="classEdge.html">Edge</a> *path) {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    this-&gt;path = <a class="code hl_variable" href="classVertex.html#a4e83821f961f6eb63ad210260ba0e1e2">path</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classVertex.html#ac2a80daa5a6a208173f55d4d161334f1">  110</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classVertex.html#ac2a80daa5a6a208173f55d4d161334f1">Vertex::deleteEdge</a>(<a class="code hl_class" href="classEdge.html">Edge</a> *edge) {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_class" href="classVertex.html">Vertex</a> *dest = edge-&gt;<a class="code hl_function" href="classEdge.html#a5cda44e9ba257b03963a1ac301371a59">getDest</a>();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="comment">// Remove the corresponding edge from the incoming list</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keyword">auto</span> it = dest-&gt;<a class="code hl_variable" href="classVertex.html#a5f53541a932a1c2ac0ed4b838a0af2b5">incoming</a>.begin();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">while</span> (it != dest-&gt;<a class="code hl_variable" href="classVertex.html#a5f53541a932a1c2ac0ed4b838a0af2b5">incoming</a>.end()) {</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">if</span> ((*it)-&gt;getOrig()-&gt;getCode() == <a class="code hl_variable" href="classVertex.html#a0291c0ebdee9d12acd1d19e73c27d1df">code</a>) {</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            it = dest-&gt;<a class="code hl_variable" href="classVertex.html#a5f53541a932a1c2ac0ed4b838a0af2b5">incoming</a>.erase(it);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>            it++;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">delete</span> edge;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>}</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classVertex.html#a6c38817196656fcc394aae867ee62773">  132</a></span><a class="code hl_class" href="classEdge.html">Edge</a> *<a class="code hl_function" href="classVertex.html#a6c38817196656fcc394aae867ee62773">Vertex::addEdge</a>(<a class="code hl_class" href="classVertex.html">Vertex</a> *dest, <span class="keywordtype">double</span> w) {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">auto</span> newEdge = <span class="keyword">new</span> <a class="code hl_class" href="classEdge.html">Edge</a>(<span class="keyword">this</span>, dest, w);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <a class="code hl_variable" href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">adj</a>.push_back(newEdge);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    dest-&gt;<a class="code hl_variable" href="classVertex.html#a5f53541a932a1c2ac0ed4b838a0af2b5">incoming</a>.push_back(newEdge);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordflow">return</span> newEdge;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>}</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="classVertex.html#a8af43932d827787b034fe235326e4ebe">  147</a></span><a class="code hl_function" href="classVertex.html#a8af43932d827787b034fe235326e4ebe">Vertex::Vertex</a>(std::string reservoir, std::string municipality, <span class="keywordtype">int</span> <span class="keywordtype">id</span>, std::string code, <span class="keywordtype">double</span> maxdelivery) {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    this-&gt;reservoir = <a class="code hl_variable" href="classVertex.html#a72fa377971de18b02f17a9615d0213ac">reservoir</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    this-&gt;municipality = <a class="code hl_variable" href="classVertex.html#a2e791a46d0f4bc179bac1fcda4a68a05">municipality</a>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    this-&gt;<span class="keywordtype">id</span> = <a class="code hl_variable" href="classVertex.html#a2e69697726190f50c7fc040fb1ddac7a">id</a>;</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    this-&gt;code = <a class="code hl_variable" href="classVertex.html#a0291c0ebdee9d12acd1d19e73c27d1df">code</a>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    this-&gt;<a class="code hl_variable" href="classVertex.html#a2e708fcfd59c655157b3c43cd94e41e3">maxDelivery</a> = maxdelivery;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>}</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="classVertex.html#a81c8934cc50375ef001ab1a5aeb20c03">  160</a></span><a class="code hl_function" href="classVertex.html#a8af43932d827787b034fe235326e4ebe">Vertex::Vertex</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>, std::string code) {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    this-&gt;<span class="keywordtype">id</span> = <a class="code hl_variable" href="classVertex.html#a2e69697726190f50c7fc040fb1ddac7a">id</a>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    this-&gt;code = <a class="code hl_variable" href="classVertex.html#a0291c0ebdee9d12acd1d19e73c27d1df">code</a>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classVertex.html#a8420c77932c1c0425dd293232785747c">  173</a></span><a class="code hl_function" href="classVertex.html#a8af43932d827787b034fe235326e4ebe">Vertex::Vertex</a>(std::string city, <span class="keywordtype">int</span> <span class="keywordtype">id</span>, std::string code, <span class="keywordtype">double</span> demand, <span class="keywordtype">int</span> population) {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    this-&gt;city = <a class="code hl_variable" href="classVertex.html#aa686880728f956b1e23f9f144bd5d5e7">city</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    this-&gt;<span class="keywordtype">id</span> = <a class="code hl_variable" href="classVertex.html#a2e69697726190f50c7fc040fb1ddac7a">id</a>;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    this-&gt;code = <a class="code hl_variable" href="classVertex.html#a0291c0ebdee9d12acd1d19e73c27d1df">code</a>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    this-&gt;demand = <a class="code hl_variable" href="classVertex.html#ae2e48b88e718b337eb84b2482ecb78ac">demand</a>;</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    this-&gt;population = <a class="code hl_variable" href="classVertex.html#a59e05027f0ec5a15a57b9dcd4a4e8afc">population</a>;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classVertex.html#acf0226bc8fddef35cb888979cfe01f38">  186</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="classVertex.html#acf0226bc8fddef35cb888979cfe01f38">Vertex::getMaxDelivery</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classVertex.html#a2e708fcfd59c655157b3c43cd94e41e3">maxDelivery</a>;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>}</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classVertex.html#a89a00554f777a1dfdd8797b822d308bc">  195</a></span>std::string <a class="code hl_function" href="classVertex.html#a89a00554f777a1dfdd8797b822d308bc">Vertex::getCode</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classVertex.html#a0291c0ebdee9d12acd1d19e73c27d1df">code</a>;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>}</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classVertex.html#ab86cba89fe67cdcd89dd965d125ad5c8">  204</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="classVertex.html#ab86cba89fe67cdcd89dd965d125ad5c8">Vertex::getDemand</a>()<span class="keyword"> const</span>{</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <span class="keywordflow">return</span>  this-&gt;<a class="code hl_variable" href="classVertex.html#ae2e48b88e718b337eb84b2482ecb78ac">demand</a>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>}</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="classVertex.html#a8283a8eb5e4b3a34175968d361ee4820">  213</a></span>std::string <a class="code hl_function" href="classVertex.html#a8283a8eb5e4b3a34175968d361ee4820">Vertex::getCity</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classVertex.html#aa686880728f956b1e23f9f144bd5d5e7">city</a>;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>}</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">/********************** Edge  ****************************/</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="classEdge.html#a3fbba8b36a23268b8befc72121d98df7">  225</a></span><a class="code hl_function" href="classEdge.html#a3fbba8b36a23268b8befc72121d98df7">Edge::Edge</a>(<a class="code hl_class" href="classVertex.html">Vertex</a> *orig, <a class="code hl_class" href="classVertex.html">Vertex</a> *dest, <span class="keywordtype">double</span> capacity) {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    this-&gt;orig = <a class="code hl_variable" href="classEdge.html#a48f1521d20ead8492fd1d184656862f5">orig</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    this-&gt;dest = <a class="code hl_variable" href="classEdge.html#a50339c1a85710ca827d4e3865727ffd7">dest</a>;</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    this-&gt;capacity = <a class="code hl_variable" href="classEdge.html#ad04953647fb4dd78e5aed935a811a7a2">capacity</a>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>}</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno"><a class="line" href="classEdge.html#a5cda44e9ba257b03963a1ac301371a59">  237</a></span><a class="code hl_class" href="classVertex.html">Vertex</a> * <a class="code hl_function" href="classEdge.html#a5cda44e9ba257b03963a1ac301371a59">Edge::getDest</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classEdge.html#a50339c1a85710ca827d4e3865727ffd7">dest</a>;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>}</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="classEdge.html#aece03ec4ebb5e0966ae09a69eaafcb23">  246</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="classEdge.html#aece03ec4ebb5e0966ae09a69eaafcb23">Edge::getCapacity</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classEdge.html#ad04953647fb4dd78e5aed935a811a7a2">capacity</a>;</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>}</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="classEdge.html#a6e8b08e91c0694b40edff0432fb612eb">  255</a></span><a class="code hl_class" href="classVertex.html">Vertex</a> * <a class="code hl_function" href="classEdge.html#a6e8b08e91c0694b40edff0432fb612eb">Edge::getOrig</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classEdge.html#a48f1521d20ead8492fd1d184656862f5">orig</a>;</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>}</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="classEdge.html#a52967cf488bb7185a512cd111420215d">  264</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classEdge.html#a52967cf488bb7185a512cd111420215d">Edge::isSelected</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classEdge.html#a3af6d278c4ddcb2589e1aa66e52f4efb">selected</a>;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>}</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="classEdge.html#a30ff9f3127097db8dce20f5e8b15e6dc">  273</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="classEdge.html#a30ff9f3127097db8dce20f5e8b15e6dc">Edge::getFlow</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classEdge.html#adbe59333b5a49cbb85b39ce1272e6098">flow</a>;</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>}</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="classEdge.html#a8ab1cf2fe7fd16152d1dba3822853894">  282</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classEdge.html#a8ab1cf2fe7fd16152d1dba3822853894">Edge::setSelected</a>(<span class="keywordtype">bool</span> selected) {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    this-&gt;selected = <a class="code hl_variable" href="classEdge.html#a3af6d278c4ddcb2589e1aa66e52f4efb">selected</a>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>}</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="classEdge.html#a64881280015bd83702fe3b2c6234b7e5">  291</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classEdge.html#a64881280015bd83702fe3b2c6234b7e5">Edge::setReverse</a>(<a class="code hl_class" href="classEdge.html">Edge</a> *reverse) {</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    this-&gt;reverse = <a class="code hl_variable" href="classEdge.html#abcadfaa8985d0d593a124d0fea39130a">reverse</a>;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>}</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="classEdge.html#a788cfe1f98772af4e7bbfe6310d0ccaa">  300</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classEdge.html#a788cfe1f98772af4e7bbfe6310d0ccaa">Edge::setFlow</a>(<span class="keywordtype">double</span> flow) {</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    this-&gt;flow = <a class="code hl_variable" href="classEdge.html#adbe59333b5a49cbb85b39ce1272e6098">flow</a>;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>}</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment">/********************** Graph  ****************************/</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="classGraph.html#a619ac583094079134074658e29463c0e">  313</a></span>std::vector&lt;Vertex*&gt; <a class="code hl_function" href="classGraph.html#a619ac583094079134074658e29463c0e">Graph::getVertexSet</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>;</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>}</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">  323</a></span><a class="code hl_class" href="classVertex.html">Vertex</a>* <a class="code hl_function" href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">Graph::findVertex</a>(<span class="keyword">const</span> std::string &amp;in)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> v : <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>)</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        <span class="keywordflow">if</span> (v-&gt;getCode() == in)</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>            <span class="keywordflow">return</span> v;</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>}</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno"><a class="line" href="classGraph.html#a59a5e666d2b7dc025704d7e6bce95c01">  336</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classGraph.html#a59a5e666d2b7dc025704d7e6bce95c01">Graph::addVertex</a>(<a class="code hl_class" href="classVertex.html">Vertex</a>* v) {</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">findVertex</a>(v-&gt;<a class="code hl_function" href="classVertex.html#a89a00554f777a1dfdd8797b822d308bc">getCode</a>()) != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    }</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>    <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>.push_back(v);</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>}</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="classGraph.html#ad5b9140e6a07d71e6e057dd4fb6d841e">  350</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classGraph.html#ad5b9140e6a07d71e6e057dd4fb6d841e">Graph::removeVertex</a>(<span class="keyword">const</span> std::string &amp;in) {</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>.begin(); it != <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>.end(); it++) {</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        <span class="keywordflow">if</span> ((*it)-&gt;getCode() == in) {</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>            <span class="keyword">auto</span> v = *it;</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>            v-&gt;removeOutgoingEdges();</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>            <span class="keywordflow">for</span> (<span class="keyword">auto</span> u : <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>) {</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>                u-&gt;removeEdge(v-&gt;getCode());</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>            }</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>            <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>.erase(it);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>            <span class="keyword">delete</span> v;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        }</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    }</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>}</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="comment"> * Adds an edge to a graph (this), given the contents of the source and</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="comment"> * destination vertices and the edge weight (w).</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="comment"> * Returns true if successful, and false if the source or destination vertex does not exist.</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno"><a class="line" href="classGraph.html#a59bf2bfabb7e3885e1e9d3267f91f7cd">  379</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classGraph.html#a59bf2bfabb7e3885e1e9d3267f91f7cd">Graph::addEdge</a>(<span class="keyword">const</span> std::string &amp;sourc, <span class="keyword">const</span> std::string &amp;dest, <span class="keywordtype">double</span> w) {</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    <span class="keyword">auto</span> v1 = <a class="code hl_function" href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">findVertex</a>(sourc);</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    <span class="keyword">auto</span> v2 = <a class="code hl_function" href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">findVertex</a>(dest);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    <span class="keywordflow">if</span> (v1 == <span class="keyword">nullptr</span> || v2 == <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    }</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>    v1-&gt;addEdge(v2, w);</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>}</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span> </div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno"><a class="line" href="classGraph.html#a22e4dba58104715ffc8f704828868c3e">  398</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classGraph.html#a22e4dba58104715ffc8f704828868c3e">Graph::removeEdge</a>(<span class="keyword">const</span> std::string &amp;sourc, <span class="keyword">const</span> std::string &amp;dest) {</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>    <a class="code hl_class" href="classVertex.html">Vertex</a>* srcVertex = <a class="code hl_function" href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">findVertex</a>(sourc);</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>    <span class="keywordflow">if</span> (srcVertex == <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>    }</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>    <span class="keywordflow">return</span> srcVertex-&gt;<a class="code hl_function" href="classVertex.html#a4d8890c92e810f8cdbc7777e45b16538">removeEdge</a>(dest);</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>}</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno"><a class="line" href="classGraph.html#a505e21b2392f34f795f363bfe787c7da">  414</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classGraph.html#a505e21b2392f34f795f363bfe787c7da">Graph::addBidirectionalEdge</a>(<span class="keyword">const</span> std::string &amp;sourc, <span class="keyword">const</span> std::string &amp;dest, <span class="keywordtype">double</span> w) {</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>    <span class="keyword">auto</span> v1 = <a class="code hl_function" href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">findVertex</a>(sourc);</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>    <span class="keyword">auto</span> v2 = <a class="code hl_function" href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">findVertex</a>(dest);</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>    <span class="keywordflow">if</span> (v1 == <span class="keyword">nullptr</span> || v2 == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>    <span class="keyword">auto</span> e1 = v1-&gt;addEdge(v2, w);</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>    <span class="keyword">auto</span> e2 = v2-&gt;addEdge(v1, w);</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>    e1-&gt;setReverse(e2);</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>    e2-&gt;setReverse(e1);</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>}</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno"><a class="line" href="Graph_8cpp.html#ad56527992afe31a371065e795da57d25">  431</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="Graph_8cpp.html#ad56527992afe31a371065e795da57d25">deleteMatrix</a>(<span class="keywordtype">int</span> **m, <span class="keywordtype">int</span> n) {</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>    <span class="keywordflow">if</span> (m != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++)</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>            <span class="keywordflow">if</span> (m[i] != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>                <span class="keyword">delete</span> [] m[i];</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>        <span class="keyword">delete</span> [] m;</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>    }</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>}</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span> </div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno"><a class="line" href="Graph_8cpp.html#af077bc8682a1a1d97e30b08eb1131b19">  445</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="Graph_8cpp.html#ad56527992afe31a371065e795da57d25">deleteMatrix</a>(<span class="keywordtype">double</span> **m, <span class="keywordtype">int</span> n) {</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>    <span class="keywordflow">if</span> (m != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; i++)</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>            <span class="keywordflow">if</span> (m[i] != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>                <span class="keyword">delete</span> [] m[i];</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>        <span class="keyword">delete</span> [] m;</div>
+<div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    }</div>
+<div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>}</div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span> </div>
+<div class="line"><a id="l00457" name="l00457"></a><span class="lineno"><a class="line" href="classGraph.html#a902c5b3eacb66d60752525ab23297a95">  457</a></span><a class="code hl_function" href="classGraph.html#a902c5b3eacb66d60752525ab23297a95">Graph::~Graph</a>() {</div>
+<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>    <a class="code hl_function" href="Graph_8cpp.html#ad56527992afe31a371065e795da57d25">deleteMatrix</a>(<a class="code hl_variable" href="classGraph.html#a9e61864da69191c1896a25a708d1a02d">distMatrix</a>, <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>.size());</div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>    <a class="code hl_function" href="Graph_8cpp.html#ad56527992afe31a371065e795da57d25">deleteMatrix</a>(<a class="code hl_variable" href="classGraph.html#a3ae09699c3616af3ebfcb1eb045f2b62">pathMatrix</a>, <a class="code hl_variable" href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">vertexSet</a>.size());</div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>}</div>
+<div class="ttc" id="aGraph_8cpp_html_ad56527992afe31a371065e795da57d25"><div class="ttname"><a href="Graph_8cpp.html#ad56527992afe31a371065e795da57d25">deleteMatrix</a></div><div class="ttdeci">void deleteMatrix(int **m, int n)</div><div class="ttdoc">Parte do destrutor da classe Graph.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00431">Graph.cpp:431</a></div></div>
+<div class="ttc" id="aGraph_8h_html"><div class="ttname"><a href="Graph_8h.html">Graph.h</a></div></div>
+<div class="ttc" id="aclassEdge_html"><div class="ttname"><a href="classEdge.html">Edge</a></div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00066">Graph.h:66</a></div></div>
+<div class="ttc" id="aclassEdge_html_a30ff9f3127097db8dce20f5e8b15e6dc"><div class="ttname"><a href="classEdge.html#a30ff9f3127097db8dce20f5e8b15e6dc">Edge::getFlow</a></div><div class="ttdeci">double getFlow() const</div><div class="ttdoc">Obtém a aresta reversa de uma aresta.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00273">Graph.cpp:273</a></div></div>
+<div class="ttc" id="aclassEdge_html_a3af6d278c4ddcb2589e1aa66e52f4efb"><div class="ttname"><a href="classEdge.html#a3af6d278c4ddcb2589e1aa66e52f4efb">Edge::selected</a></div><div class="ttdeci">bool selected</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00084">Graph.h:84</a></div></div>
+<div class="ttc" id="aclassEdge_html_a3fbba8b36a23268b8befc72121d98df7"><div class="ttname"><a href="classEdge.html#a3fbba8b36a23268b8befc72121d98df7">Edge::Edge</a></div><div class="ttdeci">Edge(Vertex *orig, Vertex *dest, double capacity)</div><div class="ttdoc">Construtor da classe Edge.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00225">Graph.cpp:225</a></div></div>
+<div class="ttc" id="aclassEdge_html_a48f1521d20ead8492fd1d184656862f5"><div class="ttname"><a href="classEdge.html#a48f1521d20ead8492fd1d184656862f5">Edge::orig</a></div><div class="ttdeci">Vertex * orig</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00087">Graph.h:87</a></div></div>
+<div class="ttc" id="aclassEdge_html_a50339c1a85710ca827d4e3865727ffd7"><div class="ttname"><a href="classEdge.html#a50339c1a85710ca827d4e3865727ffd7">Edge::dest</a></div><div class="ttdeci">Vertex * dest</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00080">Graph.h:80</a></div></div>
+<div class="ttc" id="aclassEdge_html_a52967cf488bb7185a512cd111420215d"><div class="ttname"><a href="classEdge.html#a52967cf488bb7185a512cd111420215d">Edge::isSelected</a></div><div class="ttdeci">bool isSelected() const</div><div class="ttdoc">Obtém o fluxo de uma aresta.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00264">Graph.cpp:264</a></div></div>
+<div class="ttc" id="aclassEdge_html_a5cda44e9ba257b03963a1ac301371a59"><div class="ttname"><a href="classEdge.html#a5cda44e9ba257b03963a1ac301371a59">Edge::getDest</a></div><div class="ttdeci">Vertex * getDest() const</div><div class="ttdoc">Obtém o vértice de destino de uma aresta.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00237">Graph.cpp:237</a></div></div>
+<div class="ttc" id="aclassEdge_html_a64881280015bd83702fe3b2c6234b7e5"><div class="ttname"><a href="classEdge.html#a64881280015bd83702fe3b2c6234b7e5">Edge::setReverse</a></div><div class="ttdeci">void setReverse(Edge *reverse)</div><div class="ttdoc">Define a aresta reversa de uma aresta.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00291">Graph.cpp:291</a></div></div>
+<div class="ttc" id="aclassEdge_html_a6e8b08e91c0694b40edff0432fb612eb"><div class="ttname"><a href="classEdge.html#a6e8b08e91c0694b40edff0432fb612eb">Edge::getOrig</a></div><div class="ttdeci">Vertex * getOrig() const</div><div class="ttdoc">Verifica se uma aresta foi selecionada.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00255">Graph.cpp:255</a></div></div>
+<div class="ttc" id="aclassEdge_html_a788cfe1f98772af4e7bbfe6310d0ccaa"><div class="ttname"><a href="classEdge.html#a788cfe1f98772af4e7bbfe6310d0ccaa">Edge::setFlow</a></div><div class="ttdeci">void setFlow(double flow)</div><div class="ttdoc">Define o fluxo de uma aresta.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00300">Graph.cpp:300</a></div></div>
+<div class="ttc" id="aclassEdge_html_a8ab1cf2fe7fd16152d1dba3822853894"><div class="ttname"><a href="classEdge.html#a8ab1cf2fe7fd16152d1dba3822853894">Edge::setSelected</a></div><div class="ttdeci">void setSelected(bool selected)</div><div class="ttdoc">Define se uma aresta foi selecionada.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00282">Graph.cpp:282</a></div></div>
+<div class="ttc" id="aclassEdge_html_abcadfaa8985d0d593a124d0fea39130a"><div class="ttname"><a href="classEdge.html#abcadfaa8985d0d593a124d0fea39130a">Edge::reverse</a></div><div class="ttdeci">Edge * reverse</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00088">Graph.h:88</a></div></div>
+<div class="ttc" id="aclassEdge_html_ad04953647fb4dd78e5aed935a811a7a2"><div class="ttname"><a href="classEdge.html#ad04953647fb4dd78e5aed935a811a7a2">Edge::capacity</a></div><div class="ttdeci">double capacity</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00081">Graph.h:81</a></div></div>
+<div class="ttc" id="aclassEdge_html_adbe59333b5a49cbb85b39ce1272e6098"><div class="ttname"><a href="classEdge.html#adbe59333b5a49cbb85b39ce1272e6098">Edge::flow</a></div><div class="ttdeci">double flow</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00090">Graph.h:90</a></div></div>
+<div class="ttc" id="aclassEdge_html_aece03ec4ebb5e0966ae09a69eaafcb23"><div class="ttname"><a href="classEdge.html#aece03ec4ebb5e0966ae09a69eaafcb23">Edge::getCapacity</a></div><div class="ttdeci">double getCapacity() const</div><div class="ttdoc">Obtém a capacidade de uma aresta.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00246">Graph.cpp:246</a></div></div>
+<div class="ttc" id="aclassGraph_html_a22e4dba58104715ffc8f704828868c3e"><div class="ttname"><a href="classGraph.html#a22e4dba58104715ffc8f704828868c3e">Graph::removeEdge</a></div><div class="ttdeci">bool removeEdge(const std::string &amp;source, const std::string &amp;dest)</div><div class="ttdoc">Remove uma aresta de um grafo (this).</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00398">Graph.cpp:398</a></div></div>
+<div class="ttc" id="aclassGraph_html_a367936fd417251cb1e1738cf6662b3db"><div class="ttname"><a href="classGraph.html#a367936fd417251cb1e1738cf6662b3db">Graph::findVertex</a></div><div class="ttdeci">Vertex * findVertex(const std::string &amp;in) const</div><div class="ttdoc">Função auxiliar para encontrar um vértice com um dado conteúdo.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00323">Graph.cpp:323</a></div></div>
+<div class="ttc" id="aclassGraph_html_a3ae09699c3616af3ebfcb1eb045f2b62"><div class="ttname"><a href="classGraph.html#a3ae09699c3616af3ebfcb1eb045f2b62">Graph::pathMatrix</a></div><div class="ttdeci">int ** pathMatrix</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00122">Graph.h:122</a></div></div>
+<div class="ttc" id="aclassGraph_html_a505e21b2392f34f795f363bfe787c7da"><div class="ttname"><a href="classGraph.html#a505e21b2392f34f795f363bfe787c7da">Graph::addBidirectionalEdge</a></div><div class="ttdeci">bool addBidirectionalEdge(const std::string &amp;sourc, const std::string &amp;dest, double w)</div><div class="ttdoc">Adiciona uma aresta bidirecional a um grafo (this).</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00414">Graph.cpp:414</a></div></div>
+<div class="ttc" id="aclassGraph_html_a59a5e666d2b7dc025704d7e6bce95c01"><div class="ttname"><a href="classGraph.html#a59a5e666d2b7dc025704d7e6bce95c01">Graph::addVertex</a></div><div class="ttdeci">bool addVertex(Vertex *v)</div><div class="ttdoc">Adiciona um vértice com um dado conteúdo (v) a um grafo (this).</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00336">Graph.cpp:336</a></div></div>
+<div class="ttc" id="aclassGraph_html_a59bf2bfabb7e3885e1e9d3267f91f7cd"><div class="ttname"><a href="classGraph.html#a59bf2bfabb7e3885e1e9d3267f91f7cd">Graph::addEdge</a></div><div class="ttdeci">bool addEdge(const std::string &amp;sourc, const std::string &amp;dest, double w)</div><div class="ttdoc">Adiciona uma aresta a um grafo (this), dado o conteúdo dos vértices de origem e destino e o peso da a...</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00379">Graph.cpp:379</a></div></div>
+<div class="ttc" id="aclassGraph_html_a619ac583094079134074658e29463c0e"><div class="ttname"><a href="classGraph.html#a619ac583094079134074658e29463c0e">Graph::getVertexSet</a></div><div class="ttdeci">std::vector&lt; Vertex * &gt; getVertexSet() const</div><div class="ttdoc">Obtém o conjunto de vértices de um grafo.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00313">Graph.cpp:313</a></div></div>
+<div class="ttc" id="aclassGraph_html_a6eec9bd738a8909119e5b2470ff5f264"><div class="ttname"><a href="classGraph.html#a6eec9bd738a8909119e5b2470ff5f264">Graph::vertexSet</a></div><div class="ttdeci">std::vector&lt; Vertex * &gt; vertexSet</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00119">Graph.h:119</a></div></div>
+<div class="ttc" id="aclassGraph_html_a902c5b3eacb66d60752525ab23297a95"><div class="ttname"><a href="classGraph.html#a902c5b3eacb66d60752525ab23297a95">Graph::~Graph</a></div><div class="ttdeci">~Graph()</div><div class="ttdoc">Destrutor da classe Graph.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00457">Graph.cpp:457</a></div></div>
+<div class="ttc" id="aclassGraph_html_a9e61864da69191c1896a25a708d1a02d"><div class="ttname"><a href="classGraph.html#a9e61864da69191c1896a25a708d1a02d">Graph::distMatrix</a></div><div class="ttdeci">double ** distMatrix</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00121">Graph.h:121</a></div></div>
+<div class="ttc" id="aclassGraph_html_ad5b9140e6a07d71e6e057dd4fb6d841e"><div class="ttname"><a href="classGraph.html#ad5b9140e6a07d71e6e057dd4fb6d841e">Graph::removeVertex</a></div><div class="ttdeci">bool removeVertex(const std::string &amp;in)</div><div class="ttdoc">Remove um vértice com um dado conteúdo (in) de um grafo (this), e todas as arestas de saída e entrada...</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00350">Graph.cpp:350</a></div></div>
+<div class="ttc" id="aclassVertex_html"><div class="ttname"><a href="classVertex.html">Vertex</a></div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00016">Graph.h:16</a></div></div>
+<div class="ttc" id="aclassVertex_html_a0291c0ebdee9d12acd1d19e73c27d1df"><div class="ttname"><a href="classVertex.html#a0291c0ebdee9d12acd1d19e73c27d1df">Vertex::code</a></div><div class="ttdeci">std::string code</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00045">Graph.h:45</a></div></div>
+<div class="ttc" id="aclassVertex_html_a11d98611f5101fe7f46785d8b9c53f44"><div class="ttname"><a href="classVertex.html#a11d98611f5101fe7f46785d8b9c53f44">Vertex::dist</a></div><div class="ttdeci">double dist</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00055">Graph.h:55</a></div></div>
+<div class="ttc" id="aclassVertex_html_a15eeabbbb6d517af746ae137c6d5b595"><div class="ttname"><a href="classVertex.html#a15eeabbbb6d517af746ae137c6d5b595">Vertex::setVisited</a></div><div class="ttdeci">void setVisited(bool visited)</div><div class="ttdoc">Define se um vértice foi visitado.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00091">Graph.cpp:91</a></div></div>
+<div class="ttc" id="aclassVertex_html_a2e69697726190f50c7fc040fb1ddac7a"><div class="ttname"><a href="classVertex.html#a2e69697726190f50c7fc040fb1ddac7a">Vertex::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00044">Graph.h:44</a></div></div>
+<div class="ttc" id="aclassVertex_html_a2e708fcfd59c655157b3c43cd94e41e3"><div class="ttname"><a href="classVertex.html#a2e708fcfd59c655157b3c43cd94e41e3">Vertex::maxDelivery</a></div><div class="ttdeci">double maxDelivery</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00041">Graph.h:41</a></div></div>
+<div class="ttc" id="aclassVertex_html_a2e791a46d0f4bc179bac1fcda4a68a05"><div class="ttname"><a href="classVertex.html#a2e791a46d0f4bc179bac1fcda4a68a05">Vertex::municipality</a></div><div class="ttdeci">std::string municipality</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00043">Graph.h:43</a></div></div>
+<div class="ttc" id="aclassVertex_html_a4d8890c92e810f8cdbc7777e45b16538"><div class="ttname"><a href="classVertex.html#a4d8890c92e810f8cdbc7777e45b16538">Vertex::removeEdge</a></div><div class="ttdeci">bool removeEdge(std::string in)</div><div class="ttdoc">Função auxiliar para remover uma aresta de saída (com um destino (d) dado) de um vértice (this).</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00010">Graph.cpp:10</a></div></div>
+<div class="ttc" id="aclassVertex_html_a4e83821f961f6eb63ad210260ba0e1e2"><div class="ttname"><a href="classVertex.html#a4e83821f961f6eb63ad210260ba0e1e2">Vertex::path</a></div><div class="ttdeci">Edge * path</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00056">Graph.h:56</a></div></div>
+<div class="ttc" id="aclassVertex_html_a59e05027f0ec5a15a57b9dcd4a4e8afc"><div class="ttname"><a href="classVertex.html#a59e05027f0ec5a15a57b9dcd4a4e8afc">Vertex::population</a></div><div class="ttdeci">int population</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00047">Graph.h:47</a></div></div>
+<div class="ttc" id="aclassVertex_html_a5f53541a932a1c2ac0ed4b838a0af2b5"><div class="ttname"><a href="classVertex.html#a5f53541a932a1c2ac0ed4b838a0af2b5">Vertex::incoming</a></div><div class="ttdeci">std::vector&lt; Edge * &gt; incoming</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00058">Graph.h:58</a></div></div>
+<div class="ttc" id="aclassVertex_html_a6c38817196656fcc394aae867ee62773"><div class="ttname"><a href="classVertex.html#a6c38817196656fcc394aae867ee62773">Vertex::addEdge</a></div><div class="ttdeci">Edge * addEdge(Vertex *dest, double w)</div><div class="ttdoc">Adiciona uma aresta a um vértice.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00132">Graph.cpp:132</a></div></div>
+<div class="ttc" id="aclassVertex_html_a6e120e57da6af94892fae44e05868794"><div class="ttname"><a href="classVertex.html#a6e120e57da6af94892fae44e05868794">Vertex::getPath</a></div><div class="ttdeci">Edge * getPath() const</div><div class="ttdoc">Obtém a aresta que liga um vértice ao seu path.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00073">Graph.cpp:73</a></div></div>
+<div class="ttc" id="aclassVertex_html_a72fa377971de18b02f17a9615d0213ac"><div class="ttname"><a href="classVertex.html#a72fa377971de18b02f17a9615d0213ac">Vertex::reservoir</a></div><div class="ttdeci">std::string reservoir</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00042">Graph.h:42</a></div></div>
+<div class="ttc" id="aclassVertex_html_a8283a8eb5e4b3a34175968d361ee4820"><div class="ttname"><a href="classVertex.html#a8283a8eb5e4b3a34175968d361ee4820">Vertex::getCity</a></div><div class="ttdeci">std::string getCity() const</div><div class="ttdoc">Obtém a cidade de um vértice.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00213">Graph.cpp:213</a></div></div>
+<div class="ttc" id="aclassVertex_html_a84b20dae22321e5a729606885357b015"><div class="ttname"><a href="classVertex.html#a84b20dae22321e5a729606885357b015">Vertex::getIncoming</a></div><div class="ttdeci">std::vector&lt; Edge * &gt; getIncoming() const</div><div class="ttdoc">Obtém a lista de arestas que entram num vértice.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00082">Graph.cpp:82</a></div></div>
+<div class="ttc" id="aclassVertex_html_a89a00554f777a1dfdd8797b822d308bc"><div class="ttname"><a href="classVertex.html#a89a00554f777a1dfdd8797b822d308bc">Vertex::getCode</a></div><div class="ttdeci">std::string getCode() const</div><div class="ttdoc">Obtém o código de um vértice.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00195">Graph.cpp:195</a></div></div>
+<div class="ttc" id="aclassVertex_html_a8af43932d827787b034fe235326e4ebe"><div class="ttname"><a href="classVertex.html#a8af43932d827787b034fe235326e4ebe">Vertex::Vertex</a></div><div class="ttdeci">Vertex(std::string reservoir, std::string municipality, int id, std::string code, double maxdelivery)</div><div class="ttdoc">Construtor da classe Vertex. Utilizado para vértices do tipo reservatório.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00147">Graph.cpp:147</a></div></div>
+<div class="ttc" id="aclassVertex_html_a8e2eb1c5bf923165179ff9d8b4f29349"><div class="ttname"><a href="classVertex.html#a8e2eb1c5bf923165179ff9d8b4f29349">Vertex::adj</a></div><div class="ttdeci">std::vector&lt; Edge * &gt; adj</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00049">Graph.h:49</a></div></div>
+<div class="ttc" id="aclassVertex_html_a9858f2aa388d2bfb49d9df8f4504b5a0"><div class="ttname"><a href="classVertex.html#a9858f2aa388d2bfb49d9df8f4504b5a0">Vertex::getAdj</a></div><div class="ttdeci">std::vector&lt; Edge * &gt; getAdj() const</div><div class="ttdoc">Obtém a lista de arestas adjacentes a um vértice.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00055">Graph.cpp:55</a></div></div>
+<div class="ttc" id="aclassVertex_html_aa4bd82105b85ee53a917391f4811cd8a"><div class="ttname"><a href="classVertex.html#aa4bd82105b85ee53a917391f4811cd8a">Vertex::isVisited</a></div><div class="ttdeci">bool isVisited() const</div><div class="ttdoc">Verifica se um vértice foi visitado.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00064">Graph.cpp:64</a></div></div>
+<div class="ttc" id="aclassVertex_html_aa686880728f956b1e23f9f144bd5d5e7"><div class="ttname"><a href="classVertex.html#aa686880728f956b1e23f9f144bd5d5e7">Vertex::city</a></div><div class="ttdeci">std::string city</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00048">Graph.h:48</a></div></div>
+<div class="ttc" id="aclassVertex_html_aaef9f7de91b4b8f1752d391a1aae9c2e"><div class="ttname"><a href="classVertex.html#aaef9f7de91b4b8f1752d391a1aae9c2e">Vertex::visited</a></div><div class="ttdeci">bool visited</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00052">Graph.h:52</a></div></div>
+<div class="ttc" id="aclassVertex_html_ab86cba89fe67cdcd89dd965d125ad5c8"><div class="ttname"><a href="classVertex.html#ab86cba89fe67cdcd89dd965d125ad5c8">Vertex::getDemand</a></div><div class="ttdeci">double getDemand() const</div><div class="ttdoc">Obtém a procura de um vértice.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00204">Graph.cpp:204</a></div></div>
+<div class="ttc" id="aclassVertex_html_abe4bc30005eec65e775d0cd51f456460"><div class="ttname"><a href="classVertex.html#abe4bc30005eec65e775d0cd51f456460">Vertex::setPath</a></div><div class="ttdeci">void setPath(Edge *path)</div><div class="ttdoc">Define a aresta que liga um vértice ao seu path.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00100">Graph.cpp:100</a></div></div>
+<div class="ttc" id="aclassVertex_html_ac2a80daa5a6a208173f55d4d161334f1"><div class="ttname"><a href="classVertex.html#ac2a80daa5a6a208173f55d4d161334f1">Vertex::deleteEdge</a></div><div class="ttdeci">void deleteEdge(Edge *edge)</div><div class="ttdoc">Remove uma aresta de um vértice.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00110">Graph.cpp:110</a></div></div>
+<div class="ttc" id="aclassVertex_html_acf0226bc8fddef35cb888979cfe01f38"><div class="ttname"><a href="classVertex.html#acf0226bc8fddef35cb888979cfe01f38">Vertex::getMaxDelivery</a></div><div class="ttdeci">double getMaxDelivery() const</div><div class="ttdoc">Obtém a entrega máxima de um vértice.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00186">Graph.cpp:186</a></div></div>
+<div class="ttc" id="aclassVertex_html_ad4ccd48170a1530ec1db5eb306357a74"><div class="ttname"><a href="classVertex.html#ad4ccd48170a1530ec1db5eb306357a74">Vertex::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(Vertex &amp;vertex) const</div><div class="ttdoc">Operador para comparar dois vértices, através do dist.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00046">Graph.cpp:46</a></div></div>
+<div class="ttc" id="aclassVertex_html_ae2e48b88e718b337eb84b2482ecb78ac"><div class="ttname"><a href="classVertex.html#ae2e48b88e718b337eb84b2482ecb78ac">Vertex::demand</a></div><div class="ttdeci">double demand</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8h_source.html#l00046">Graph.h:46</a></div></div>
+<div class="ttc" id="aclassVertex_html_afcde6d707aff7627df7adde8d8b74a89"><div class="ttname"><a href="classVertex.html#afcde6d707aff7627df7adde8d8b74a89">Vertex::removeOutgoingEdges</a></div><div class="ttdeci">void removeOutgoingEdges()</div><div class="ttdoc">Remove todos os outgoing edges de um vértice.t.</div><div class="ttdef"><b>Definition:</b> <a href="Graph_8cpp_source.html#l00032">Graph.cpp:32</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="Graph_8cpp.html">Graph.cpp</a></li>
+    <li class="footer">Gerado em Quarta, 3 de Abril de 2024 17:39:54 para WaterSystem (DA 2023/24) por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+  </ul>
+</div>
+</body>
+</html>

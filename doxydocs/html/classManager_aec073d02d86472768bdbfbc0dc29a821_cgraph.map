@@ -1,0 +1,8 @@
+<map id="Manager::findAugmentingPaths" name="Manager::findAugmentingPaths">
+<area shape="rect" id="node1" title="Encontra augmenting paths no grafo." alt="" coords="5,81,231,108"/>
+<area shape="rect" id="node2" href="$classGraph.html#a619ac583094079134074658e29463c0e" title="Obtém o conjunto de vértices de um grafo." alt="" coords="285,5,439,32"/>
+<area shape="rect" id="node3" href="$classVertex.html#aa4bd82105b85ee53a917391f4811cd8a" title="Verifica se um vértice foi visitado." alt="" coords="498,56,626,83"/>
+<area shape="rect" id="node4" href="$classVertex.html#a15eeabbbb6d517af746ae137c6d5b595" title="Define se um vértice foi visitado." alt="" coords="493,157,631,184"/>
+<area shape="rect" id="node5" href="$classManager.html#a8f591320e28d98009145b46f4f4603a0" title="Testa e visita um vértice." alt="" coords="279,107,445,133"/>
+<area shape="rect" id="node6" href="$classVertex.html#abe4bc30005eec65e775d0cd51f456460" title="Define a aresta que liga um vértice ao seu path." alt="" coords="502,107,622,133"/>
+</map>

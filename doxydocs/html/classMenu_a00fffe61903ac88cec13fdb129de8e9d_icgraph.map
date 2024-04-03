@@ -1,0 +1,5 @@
+<map id="Menu::maxFlowToCity" name="Menu::maxFlowToCity">
+<area shape="rect" id="node1" title="Apresenta o fluxo máximo para uma cidade específica." alt="" coords="335,5,501,32"/>
+<area shape="rect" id="node2" href="$classMenu.html#af2479c56ab20abe25b90ad64fc092426" title="Apresenta o menu principal do sistema de gestão de água." alt="" coords="152,5,287,32"/>
+<area shape="rect" id="node3" href="$classMenu.html#a117fbfc3ae88c68edda0b4d401c4d67d" title="Apresenta o menu inicial do sistema de gestão de água &#45; usado para escolher o tipo de dataset." alt="" coords="5,5,104,32"/>
+</map>

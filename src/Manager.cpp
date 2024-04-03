@@ -182,9 +182,7 @@ void Manager::counter(Graph& graph) {
         }
     }
 
-    for (auto v : graph.getVertexSet()) {
-        std::cout << v->getCode() << "\n";
-    }
+
     std::cout << "Number of reservoirs: " << reservoirs.size() << "\n";
     std::cout << "Number of stations: " << stations.size() << "\n";
     std::cout << "Number of cities: " << cities.size() << "\n";
@@ -227,7 +225,7 @@ void Manager::maxWaterFlow(Graph &graph) {
 }
 
 
-/*
+/**
  * @brief Determina o máximo de água que pode chegar a todas as cidades.
  * @details Complexidade: O(V*E^2) - número de vértices e edges
  * @param graph: grafo
@@ -242,7 +240,7 @@ void Manager::maxWaterFlowTotal(Graph& graph) {
     std::cout << "The maximum amount of water that can reach all cities is " << maxFlow;
 }
 
-/*
+/**
  * @brief Determina o máximo de água que pode chegar a uma cidade específica.
  * @details Utiliza o algoritmo maxWaterFlow para determinar o fluxo máximo.
  * @details Complexidade: O(V*E^2) - número de vértices e edges
@@ -260,7 +258,7 @@ void Manager::maxWaterFlowCity(Graph &graph, const std::string &city) {
     }
 }
 
-/*
+/**
  * @brief Determina o máximo de água que pode chegar a todas as cidades.
  * @details Utiliza o algoritmo maxWaterFlow para determinar o fluxo máximo.
  * @details Complexidade: O(V*E^2) - número de vértices e edges
@@ -275,7 +273,14 @@ void Manager::maxWaterFlowAllCities(Graph &graph) {
 }
 
 
-
+/**
+ * @brief Executa o algoritmo de Edmonds-Karp para determinar o fluxo máximo.
+ * @details Faz recurso a outras funções auxiliares.
+ * @details Complexidade: O(V*E^2) - número de vértices e edges
+ * @param graph: grafo
+ * @param source: vértice de origem
+ * @param target: vértice de destino
+ */
 void Manager::edmondsKarp(Graph &graph, Vertex *source, Vertex *target) {
     Vertex* s = graph.findVertex(source->getCode());
     Vertex* t = graph.findVertex(target->getCode());
@@ -297,6 +302,16 @@ void Manager::edmondsKarp(Graph &graph, Vertex *source, Vertex *target) {
         augmentFlowAlongPath(s, t, f);
     }
 }
+
+/**
+ * @brief Encontra augmenting paths no grafo.
+ * @details Utiliza um algoritmo de pesquisa em largura.
+ * @details Complexidade: O(V+E) - número de vértices e edges
+ * @param graph: grafo
+ * @param s: vértice de origem
+ * @param t: vértice de destino
+ * @return true se encontrar caminhos de aumento, false caso contrário
+ */
 bool Manager::findAugmentingPaths(Graph &graph, Vertex *s, Vertex *t){
     for(auto v : graph.getVertexSet()) {
         v->setVisited(false);
@@ -320,6 +335,13 @@ bool Manager::findAugmentingPaths(Graph &graph, Vertex *s, Vertex *t){
     return t->isVisited();
 }
 
+/**
+ * @brief Encontra o fluxo mínimo (residual) ao longo de um caminho.
+ * @details Complexidade: O(V) - número de vértices
+ * @param s: vértice de origem
+ * @param t: vértice de destino
+ * @return fluxo mínimo, em double
+ */
 double Manager::findMinResidualAlongPath(Vertex* s, Vertex* t) {
     double f = INT_MAX;
     for (auto v = t; v != s;) {
@@ -340,6 +362,14 @@ double Manager::findMinResidualAlongPath(Vertex* s, Vertex* t) {
     return f;
 }
 
+/**
+ * @brief Testa e visita um vértice.
+ * @details Complexidade: O(1)
+ * @param q: queue de vértices
+ * @param e: edge
+ * @param w: vértice
+ * @param residual: fluxo residual
+ */
 void Manager::testAndVisit(std::queue<Vertex*> &q, Edge* e, Vertex* w, double residual) {
     if (!w->isVisited() && residual > 0) {
         w->setVisited(true);
@@ -348,6 +378,13 @@ void Manager::testAndVisit(std::queue<Vertex*> &q, Edge* e, Vertex* w, double re
     }
 }
 
+/**
+ * @brief Aumenta o fluxo ao longo de um caminho.
+ * @details Complexidade: O(V) - número de vértices
+ * @param s: vértice de origem
+ * @param t: vértice de destino
+ * @param f: fluxo
+ */
 void Manager::augmentFlowAlongPath(Vertex* s, Vertex* t, double f) {
     for (auto v = t; v != s;) {
         auto e = v->getPath();
@@ -363,6 +400,11 @@ void Manager::augmentFlowAlongPath(Vertex* s, Vertex* t, double f) {
     }
 }
 
+/**
+ * @brief Determina as cidades com défice de água.
+ * @details Complexidade: O(V) - número de vértices
+ * @param graph
+ */
 void Manager::flowDeficit(Graph &graph) {
     maxWaterFlow(graph);
     for (auto v : graph.getVertexSet()) {
@@ -378,6 +420,12 @@ void Manager::flowDeficit(Graph &graph) {
     }
 }
 
+/**
+ * @brief Determina o défice nas cidades, após a remoção de um reservatório especificado como parâmetro.
+ * @details Complexidade: O(V+E) - número de vértices e edges
+ * @param graph: grafo
+ * @param code: reservatório a remover
+ */
 void Manager::affectingReservoirs(Graph &graph, std::string code) {
     Vertex* reservoir = graph.findVertex(code);
     if (reservoir == nullptr) {
@@ -410,6 +458,12 @@ void Manager::affectingReservoirs(Graph &graph, std::string code) {
     }
 }
 
+/**
+ * @brief Determina o défice nas cidades, após a remoção de uma estação especificada como parâmetro.
+ * @details Complexidade: O(V+E) - número de vértices e edges
+ * @param graph: grafo
+ * @param code: estação a remover
+ */
 void Manager::affectingStations(Graph graph, std::string code) {
     Vertex* station = graph.findVertex(code);
     if (station == nullptr) {
@@ -442,8 +496,19 @@ void Manager::affectingStations(Graph graph, std::string code) {
         }
 }
 
+/**
+ * @brief Determina o défice nas cidades, após a remoção de uma pipe especificada como parâmetro (códigos dos vértices de origem e de destino).
+ * @details Complexidade: O(V+E) - número de vértices e edges
+ * @param graph: grafo
+ * @param source: origem do pipe
+ * @param dest: destino do pipe
+ */
 void Manager::affectingPipes(Graph graph, std::string source, std::string dest) {
-    graph.removeEdge(source, dest);
+    if(!graph.removeEdge(source, dest)) {
+        std::cout << "Edge not found!\n";
+        return;
+    }
+
     maxWaterFlow(graph);
 
     for (auto v : graph.getVertexSet()) {
@@ -460,6 +525,7 @@ void Manager::affectingPipes(Graph graph, std::string source, std::string dest) 
 
 }
 
+/*
 void Manager::unaffectingStations(Graph graph) {
     std::vector<std::pair<std::string, double>> stationFlows;
     std::vector<std::pair<std::string, double>> stationFlows2;
@@ -527,7 +593,17 @@ void Manager::unaffectingStations(Graph graph) {
         std::cout << s << "\n";
     }
 }
+*/
 
+/*
+ *
+ * @brief Compara dois vectores de pares de strings e doubles.
+ * @details Complexidade: O(N) - número de elementos
+ * @param v1: vector 1
+ * @param v2: vector 2
+ * @return true se os vectores forem iguais, false caso contrário
+ *
+ * Actually never got this to work properly, so I just commented it out.
 bool Manager::vectorCompare(const std::vector<std::pair<std::string, double>> &v1, const std::vector<std::pair<std::string, double>> &v2) {
     if (v1.size() != v2.size()) {
         return false;
@@ -568,34 +644,5 @@ bool Manager::vectorCompare(const std::vector<std::pair<std::string, double>> &v
 
     return true;
 }
-
-
-
-/*
- * Copia o grafo existente de modo a podermos fazer várias iterações
- * de algoritmos sem alterar o grafo original.
- */
-Graph Manager::graphCopy(const Graph& graph) {
-    Graph newGraph;
-    std::unordered_map<Vertex*, Vertex*> vertexMap; // Map to store mapping between original and copied vertices
-
-    // Copy vertices
-    for (auto v : graph.getVertexSet()) {
-        Vertex* newVertex = new Vertex(*v); // Create a new vertex with the same attributes as the original
-        newGraph.addVertex(newVertex);
-        vertexMap[v] = newVertex; // Store mapping between original and copied vertices
-    }
-
-    // Copy edges
-    for (auto v : graph.getVertexSet()) {
-        for (auto e : v->getAdj()) {
-            auto origVertex = vertexMap[e->getOrig()]; // Get the copied origin vertex
-            auto destVertex = vertexMap[e->getDest()]; // Get the copied destination vertex
-            double capacity = e->getCapacity();
-            newGraph.addEdge(origVertex->getCode(), destVertex->getCode(), capacity);
-        }
-    }
-
-    return newGraph;
-}
+*/
 

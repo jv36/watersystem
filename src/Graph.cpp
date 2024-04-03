@@ -1,9 +1,11 @@
 #include "Graph.h"
 
-/*
- * Auxiliary function to remove an outgoing edge (with a given destination (d))
- * from a vertex (this).
- * Returns true if successful, and false if such edge does not exist.
+/**
+ *
+ * @brief Função auxiliar para remover uma aresta de saída (com um destino (d) dado) de um vértice (this).
+ * @details Complexidade: O(|adj|)
+ * @param in: código do vértice de destino
+ * @return Retoma true se tiver sucesso e falso se o edge não existir.
  */
 bool Vertex::removeEdge(std::string in) {
     bool removedEdge = false;
@@ -23,8 +25,9 @@ bool Vertex::removeEdge(std::string in) {
     return removedEdge;
 }
 
-/*
- * Auxiliary function to remove an outgoing edge of a vertex.
+/**
+ * @brief Remove todos os outgoing edges de um vértice.t
+ * @details Complexidade: O(|adj|)
  */
 void Vertex::removeOutgoingEdges() {
     auto it = adj.begin();
@@ -35,64 +38,75 @@ void Vertex::removeOutgoingEdges() {
     }
 }
 
+/**
+ * @brief Operador para comparar dois vértices, através do dist.
+ * @param vertex: vértice
+ * @return Retorna true se o dist do vértice atual for menor que o dist do vértice dado.
+ */
 bool Vertex::operator<(Vertex & vertex) const {
     return this->dist < vertex.dist;
 }
 
-
+/**
+ * @brief Obtém a lista de arestas adjacentes a um vértice.
+ * @details Complexidade: O(1)
+ * @return Retorna a lista de arestas adjacentes, sob a forma de um vetor.
+ */
 std::vector<Edge*> Vertex::getAdj() const {
     return this->adj;
 }
 
+/**
+ * @brief Verifica se um vértice foi visitado.
+ * @details Complexidade: O(1)
+ * @return Retoma true se o vértice foi visitado, falso caso contrário.
+ */
 bool Vertex::isVisited() const {
     return this->visited;
 }
 
-bool Vertex::isProcessing() const {
-    return this->processing;
-}
-
-unsigned int Vertex::getIndegree() const {
-    return this->indegree;
-}
-
-double Vertex::getDist() const {
-    return this->dist;
-}
-
+/**
+ * @brief Obtém a aresta que liga um vértice ao seu path.
+ * @details Complexidade: O(1)
+ * @return Retorna a aresta que liga o vértice ao seu path.
+ */
 Edge *Vertex::getPath() const {
     return this->path;
 }
 
+/**
+ * @brief Obtém a lista de arestas que entram num vértice.
+ * @details Complexidade: O(1)
+ * @return Retorna a lista de arestas que entram no vértice, sob a forma de um vetor.
+ */
 std::vector<Edge *> Vertex::getIncoming() const {
     return this->incoming;
 }
 
+/**
+ * @brief Define se um vértice foi visitado.
+ * @details Complexidade: O(1)
+ * @param visited: valor booleano que indica se o vértice foi visitado.
+ */
 void Vertex::setVisited(bool visited) {
     this->visited = visited;
 }
 
-
-void Vertex::setProcesssing(bool processing) {
-    this->processing = processing;
-}
-
-
-void Vertex::setIndegree(unsigned int indegree) {
-    this->indegree = indegree;
-}
-
-
-void Vertex::setDist(double dist) {
-    this->dist = dist;
-}
-
-
+/**
+ * @brief Define a aresta que liga um vértice ao seu path.
+ * @details Complexidade: O(1)
+ * @param path: aresta(edge)
+ */
 void Vertex::setPath(Edge *path) {
     this->path = path;
 }
 
 
+/**
+ * @brief Remove uma aresta de um vértice.
+ * @details Complexidade: O(|incoming|)
+ * @param edge: aresta a remover
+ */
 void Vertex::deleteEdge(Edge *edge) {
     Vertex *dest = edge->getDest();
     // Remove the corresponding edge from the incoming list
@@ -108,6 +122,13 @@ void Vertex::deleteEdge(Edge *edge) {
     delete edge;
 }
 
+/**
+ * @brief Adiciona uma aresta a um vértice.
+ * @details Complexidade: O(1)
+ * @param dest: vértice de destino
+ * @param w: peso da aresta
+ * @return nova aresta
+ */
 Edge *Vertex::addEdge(Vertex *dest, double w) {
     auto newEdge = new Edge(this, dest, w);
     adj.push_back(newEdge);
@@ -115,6 +136,14 @@ Edge *Vertex::addEdge(Vertex *dest, double w) {
     return newEdge;
 }
 
+/**
+ * @brief Construtor da classe Vertex. Utilizado para vértices do tipo reservatório.
+ * @param reservoir: reservatório
+ * @param municipality: município
+ * @param id: id
+ * @param code: código
+ * @param maxdelivery: entrega máxima
+ */
 Vertex::Vertex(std::string reservoir, std::string municipality, int id, std::string code, double maxdelivery) {
     this->reservoir = reservoir;
     this->municipality = municipality;
@@ -123,11 +152,24 @@ Vertex::Vertex(std::string reservoir, std::string municipality, int id, std::str
     this->maxDelivery = maxdelivery;
 }
 
+/**
+ * @brief Construtor da classe Vertex. Utilizado para vértices do tipo estação.
+ * @param id: id
+ * @param code: código
+ */
 Vertex::Vertex(int id, std::string code) {
     this->id = id;
     this->code = code;
 }
 
+/**
+ * @brief Construtor da classe Vertex. Utilizado para vértices do tipo cidade.
+ * @param city: cidade
+ * @param id: id
+ * @param code: código
+ * @param demand: procura
+ * @param population: população
+ */
 Vertex::Vertex(std::string city, int id, std::string code, double demand, int population) {
     this->city = city;
     this->id = id;
@@ -136,35 +178,50 @@ Vertex::Vertex(std::string city, int id, std::string code, double demand, int po
     this->population = population;
 }
 
+/**
+ * @brief Obtém a entrega máxima de um vértice.
+ * @details Complexidade: O(1)
+ * @return Retorna a entrega máxima de um vértice.
+ */
 double Vertex::getMaxDelivery() const {
     return this->maxDelivery;
 }
 
-std::string Vertex::getReservoir() const{
-    return this->reservoir;
-}
-std::string Vertex::getMunicipality() const{
-    return  this->municipality;
-}
-int Vertex::getID() const{
-    return this->id;
-}
+/**
+ * @brief Obtém o código de um vértice.
+ * @details Complexidade: O(1)
+ * @return Retorna o código de um vértice.
+ */
 std::string Vertex::getCode() const{
     return this->code;
 }
+
+/**
+ * @brief Obtém a procura de um vértice.
+ * @details Complexidade: O(1)
+ * @return Retorna a procura de um vértice.
+ */
 double Vertex::getDemand() const{
     return  this->demand;
 }
-int Vertex::getPopulation() const{
-    return this->population;
-}
 
+/**
+ * @brief Obtém a cidade de um vértice.
+ * @details Complexidade: O(1)
+ * @return Retorna a cidade de um vértice.
+ */
 std::string Vertex::getCity() const {
     return this->city;
 }
 
 /********************** Edge  ****************************/
 
+/**
+ * @brief Construtor da classe Edge.
+ * @param orig: vértice de origem
+ * @param dest: vértice de destino
+ * @param capacity: capacidade
+ */
 Edge::Edge(Vertex *orig, Vertex *dest, double capacity) {
     this->orig = orig;
     this->dest = dest;
@@ -172,38 +229,74 @@ Edge::Edge(Vertex *orig, Vertex *dest, double capacity) {
 
 }
 
+/**
+ * @brief Obtém o vértice de destino de uma aresta.
+ * @details Complexidade: O(1)
+ * @return Retorna o vértice de destino de uma aresta.
+ */
 Vertex * Edge::getDest() const {
     return this->dest;
 }
 
+/**
+ * @brief Obtém a capacidade de uma aresta.
+ * @details Complexidade: O(1)
+ * @return Retorna a capacidade de uma aresta.
+ */
 double Edge::getCapacity() const {
     return this->capacity;
 }
 
+/**
+ * @brief Verifica se uma aresta foi selecionada.
+ * @details Complexidade: O(1)
+ * @return Retorna true se a aresta foi selecionada, falso caso contrário.
+ */
 Vertex * Edge::getOrig() const {
     return this->orig;
 }
 
-Edge *Edge::getReverse() const {
-    return this->reverse;
-}
-
+/**
+ * @brief Obtém o fluxo de uma aresta.
+ * @details Complexidade: O(1)
+ * @return Retorna o fluxo de uma aresta.
+ */
 bool Edge::isSelected() const {
     return this->selected;
 }
 
+/**
+ * @brief Obtém a aresta reversa de uma aresta.
+ * @details Complexidade: O(1)
+ * @return Retorna a aresta reversa de uma aresta.
+ */
 double Edge::getFlow() const {
     return flow;
 }
 
+/**
+ * @brief Define se uma aresta foi selecionada.
+ * @details Complexidade: O(1)
+ * @param selected: valor booleano que indica se a aresta foi selecionada.
+ */
 void Edge::setSelected(bool selected) {
     this->selected = selected;
 }
 
+/**
+ * @brief Define a aresta reversa de uma aresta.
+ * @details Complexidade: O(1)
+ * @param reverse: aresta reversa
+ */
 void Edge::setReverse(Edge *reverse) {
     this->reverse = reverse;
 }
 
+/**
+ * @brief Define o fluxo de uma aresta.
+ * @details Complexidade: O(1)
+ * @param flow: fluxo
+ */
 void Edge::setFlow(double flow) {
     this->flow = flow;
 }
@@ -212,16 +305,20 @@ void Edge::setFlow(double flow) {
 
 /********************** Graph  ****************************/
 
-int Graph::getNumVertex() const {
-    return vertexSet.size();
-}
-
+/**
+ * @brief Obtém o conjunto de vértices de um grafo.
+ * @details Complexidade: O(1)
+ * @return Retorna o conjunto de vértices de um grafo.
+ */
 std::vector<Vertex*> Graph::getVertexSet() const {
     return vertexSet;
 }
 
-/*
- * Auxiliary function to find a vertex with a given content.
+/**
+ * @brief Função auxiliar para encontrar um vértice com um dado conteúdo.
+ * @details Complexidade: O(|vertexSet|)
+ * @param in: conteúdo
+ * @return Retorna o vértice com o conteúdo dado, ou nullptr se não existir.
  */
 Vertex* Graph::findVertex(const std::string &in) const {
     for (auto v : vertexSet)
@@ -230,19 +327,11 @@ Vertex* Graph::findVertex(const std::string &in) const {
     return nullptr;
 }
 
-/*
- * Finds the index of the vertex with a given content.
- */
-int Graph::findVertexIdx(const std::string &in) const {
-    for (unsigned i = 0; i < vertexSet.size(); i++)
-        if (vertexSet[i]->getCode() == in)
-            return i;
-    return -1;
-}
-
-/*
- *  Adds a vertex with a given content or info (in) to a graph (this).
- *  Returns true if successful, and false if a vertex with that content already exists.
+/**
+ * @brief Adiciona um vértice com um dado conteúdo (v) a um grafo (this).
+ * @details Complexidade: O(1)
+ * @param v: vértice
+ * @return Retorna true se tiver sucesso e falso se um vértice com esse conteúdo já existir.
  */
 bool Graph::addVertex(Vertex* v) {
     if (findVertex(v->getCode()) != nullptr) {
@@ -252,10 +341,11 @@ bool Graph::addVertex(Vertex* v) {
     return true;
 }
 
-/*
- *  Removes a vertex with a given content (in) from a graph (this), and
- *  all outgoing and incoming edges.
- *  Returns true if successful, and false if such vertex does not exist.
+/**
+ * @brief Remove um vértice com um dado conteúdo (in) de um grafo (this), e todas as arestas de saída e entrada.
+ * @details Complexidade: O(|vertexSet|)
+ * @param in: conteúdo
+ * @return Retorna true se tiver sucesso e falso se tal vértice não existir.
  */
 bool Graph::removeVertex(const std::string &in) {
     for (auto it = vertexSet.begin(); it != vertexSet.end(); it++) {
@@ -278,6 +368,14 @@ bool Graph::removeVertex(const std::string &in) {
  * destination vertices and the edge weight (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
+/**
+ * @brief Adiciona uma aresta a um grafo (this), dado o conteúdo dos vértices de origem e destino e o peso da aresta (w).
+ * @details Complexidade: O(|vertexSet|)
+ * @param sourc: conteúdo do vértice de origem
+ * @param dest: conteúdo do vértice de destino
+ * @param w: peso da aresta
+ * @return Retorna true se tiver sucesso e falso se o vértice de origem ou destino não existir.
+ */
 bool Graph::addEdge(const std::string &sourc, const std::string &dest, double w) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
@@ -288,10 +386,14 @@ bool Graph::addEdge(const std::string &sourc, const std::string &dest, double w)
     return true;
 }
 
-/*
- * Removes an edge from a graph (this).
- * The edge is identified by the source (sourc) and destination (dest) contents.
- * Returns true if successful, and false if such edge does not exist.
+
+/**
+ * @brief Remove uma aresta de um grafo (this).
+ * @brief A aresta é identificada pelos conteúdos de origem (sourc) e destino (dest).
+ * @details Complexidade: O(|adj|)
+ * @param sourc: conteúdo do vértice de origem
+ * @param dest: conteúdo do vértice de destino
+ * @return
  */
 bool Graph::removeEdge(const std::string &sourc, const std::string &dest) {
     Vertex* srcVertex = findVertex(sourc);
@@ -301,6 +403,14 @@ bool Graph::removeEdge(const std::string &sourc, const std::string &dest) {
     return srcVertex->removeEdge(dest);
 }
 
+/**
+ * @brief Adiciona uma aresta bidirecional a um grafo (this).
+ * @details Complexidade: O(|vertexSet|)
+ * @param sourc: conteúdo do vértice de origem
+ * @param dest: conteúdo do vértice de destino
+ * @param w: peso da aresta
+ * @return Retorna true se tiver sucesso e falso se o vértice de origem ou destino não existir.
+ */
 bool Graph::addBidirectionalEdge(const std::string &sourc, const std::string &dest, double w) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
@@ -313,6 +423,11 @@ bool Graph::addBidirectionalEdge(const std::string &sourc, const std::string &de
     return true;
 }
 
+/**
+ * @brief Parte do destrutor da classe Graph.
+ * @param m: número de linhas
+ * @param n: número de colunas
+ */
 inline void deleteMatrix(int **m, int n) {
     if (m != nullptr) {
         for (int i = 0; i < n; i++)
@@ -322,6 +437,11 @@ inline void deleteMatrix(int **m, int n) {
     }
 }
 
+/**
+ * @brief Parte do destrutor da classe Graph.
+ * @param m: número de linhas
+ * @param n: número de colunas
+ */
 inline void deleteMatrix(double **m, int n) {
     if (m != nullptr) {
         for (int i = 0; i < n; i++)
@@ -331,6 +451,9 @@ inline void deleteMatrix(double **m, int n) {
     }
 }
 
+/**
+ * @brief Destrutor da classe Graph.
+ */
 Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
